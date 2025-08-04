@@ -86,10 +86,17 @@ int main(int argc, char* argv[]) {
             }          
         }
 
+        // UPDATE ENGINE
         GetEngine().Update();
         game->Update(GetEngine().GetTime().GetDeltaTime());
-
+        
+        // QUIT SCREEN
         if (GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
+
+		// CLEAR RENDERER        
+        vec3 color{0,0,0};
+        GetEngine().GetRenderer().SetColor(color.x, color.y, color.z);
+        GetEngine().GetRenderer().Clear();        
 
         //// PLAY SOUND
         /*
@@ -148,20 +155,12 @@ int main(int argc, char* argv[]) {
         }
         */
 
-        viper::GetEngine().GetAudio().PlaySound("music");
+        // CREATE BACKGROUND MUSIC
+        //viper::GetEngine().GetAudio().PlaySound("music");
         
         // DRAW TEXTURE
-        GetEngine().GetRenderer().DrawTexture(GetEngine().GetRenderer().GetTexture(), 30, 30);
+        GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
 
-		// CLEAR RENDERER
-        vec3 color{0,0,0};
-        GetEngine().GetRenderer().SetColor(color.x, color.y, color.z);
-        GetEngine().GetRenderer().Clear();
-
-        //// DRAW TEXT
-        /*
-        text->Draw(GetEngine().GetRenderer(), 40.0f, 40.0f);
-        */
 
 		// DRAW GAME
         game->Draw(GetEngine().GetRenderer());
@@ -173,8 +172,6 @@ int main(int argc, char* argv[]) {
             if (points.empty()) points.push_back(position);
             else if ((position - points.back()).Length() > 10) points.push_back(position);
         }
-        
-        
         for (int i = 0; i < (int)points.size() - 1; i++) {
             GetEngine().GetRenderer().SetColor(random::getRandomInt(256), random::getRandomInt(256), random::getRandomInt(256));
             GetEngine().GetRenderer().DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
@@ -206,6 +203,7 @@ int main(int argc, char* argv[]) {
             renderer.DrawPoint(random::getRandomFloat() * width, random::getRandomFloat()* height);
         }*/
 
+        // PRESENT GAME
         GetEngine().GetRenderer().Present();
     }
 

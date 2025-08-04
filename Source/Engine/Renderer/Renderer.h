@@ -24,10 +24,10 @@ namespace viper {
 		int GetWidth() const { return width; }
 		int GetHeight() const { return height; }
 
-	private:
-		friend class Text;
 		friend class Texture;
 		void DrawTexture(Texture* texture, float x, float y);
+	private:
+		friend class Text;
 
 		int width{ 0 };
 		int height{ 0 };
