@@ -50,6 +50,10 @@ int main(int argc, char* argv[]) {
     /*std::shared_ptr<Text> text = std::make_shared<viper::Text>(font);
     text->Create(GetEngine().GetRenderer(), "Hello World", vec3{ 1, 1, 1});*/
 
+    // CREATE TEXTURE
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+	texture->Load("sexy-squidward.png", GetEngine().GetRenderer());
+
     // CREATE MAIN LOOP
     SDL_Event e;
     bool quit = false;
@@ -146,6 +150,9 @@ int main(int argc, char* argv[]) {
 
         viper::GetEngine().GetAudio().PlaySound("music");
         
+        // DRAW TEXTURE
+        GetEngine().GetRenderer().DrawTexture(GetEngine().GetRenderer().GetTexture(), 30, 30);
+
 		// CLEAR RENDERER
         vec3 color{0,0,0};
         GetEngine().GetRenderer().SetColor(color.x, color.y, color.z);

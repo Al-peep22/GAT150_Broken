@@ -82,4 +82,17 @@ namespace viper {
         //SDL_RenderPoint(this->renderer, random::getRandomInt(width), random::getRandomInt(height));
     }
 
+    void Renderer::DrawTexture(Texture* texture, float x, float y)
+    {
+        vec2 size = texture->GetSize();
+
+            SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = size.x;
+        destRect.h = size.y;
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTexture(renderer, texture->texture, NULL, &destRect);
+    }
 }

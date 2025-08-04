@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <iostream>
 #include <SDL3_ttf/SDL_ttf.h>
+#include "Texture.h"
 
 namespace viper {
 	class Renderer {
@@ -25,6 +26,8 @@ namespace viper {
 
 	private:
 		friend class Text;
+		friend class Texture;
+		void DrawTexture(Texture* texture, float x, float y);
 
 		int width{ 0 };
 		int height{ 0 };
