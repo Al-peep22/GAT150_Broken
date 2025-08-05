@@ -23,6 +23,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <Resources/ResourceManager.h>
 
 
 using namespace std;
@@ -38,6 +39,9 @@ int main(int argc, char* argv[]) {
 	// INITIALIZE ENGINE
     GetEngine().Initialize();
 
+	// CREATE RESOURCE MANAGER
+    viper::ResourceManager resourceManager;
+
     // Initialize Game
     std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
     game->Initialize();
@@ -50,9 +54,11 @@ int main(int argc, char* argv[]) {
     /*std::shared_ptr<Text> text = std::make_shared<viper::Text>(font);
     text->Create(GetEngine().GetRenderer(), "Hello World", vec3{ 1, 1, 1});*/
 
-    // CREATE TEXTURE
-	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-	texture->Load("sexy-squidward.png", GetEngine().GetRenderer());
+    //// CREATE TEXTURE
+	/*std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+	texture->Load("sexy-squidward.png", GetEngine().GetRenderer());*/
+
+	auto texture = resourceManager.Get<Texture>("sexy-squidward.png");
 
     // CREATE MAIN LOOP
     SDL_Event e;

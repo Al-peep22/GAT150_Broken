@@ -1,4 +1,6 @@
 #include "Renderer.h"
+#include <Engine.cpp>
+#include "Texture.h"
 
 using namespace std;
 
@@ -86,7 +88,7 @@ namespace viper {
     {
         vec2 size = texture->GetSize();
 
-            SDL_FRect destRect;
+        SDL_FRect destRect;
         destRect.x = x;
         destRect.y = y;
         destRect.w = size.x;
