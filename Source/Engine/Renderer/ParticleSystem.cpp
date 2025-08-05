@@ -42,6 +42,7 @@ namespace viper {
 			*freeParticle = particle; // Copy the particle data to the free slot
 
 			freeParticle->active = true; // Activate the particle
+			freeParticle->prevPosition = freeParticle->position;
 			freeParticle->color = particle.color; // Set the color
 		}
 		else {
