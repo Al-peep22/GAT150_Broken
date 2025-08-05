@@ -18,9 +18,9 @@ public:
 	SpaceGame() = default;
 
 	bool Initialize() override;
-	void Update(float dt) override;
 	void Shutdown() override;
 
+	void Update(float dt) override;
 	void Draw(class viper::Renderer& renderer) override;
 
 	void OnPlayerDead();
@@ -32,6 +32,7 @@ private:
 	GameState gameState = GameState::Initialize;
 	float enemySpawnTimer = { 0 };
 	float stateTimer = {0};
+
 	bool playedDeathSound = false;
 
 	std::shared_ptr<viper::Font> titleFont;

@@ -62,16 +62,6 @@ namespace viper {
         SDL_SetRenderDrawColorFloat(renderer, r, g, b, a);
     }
 
-    void Renderer::Clear()
-    {
-        SDL_RenderClear(this->renderer);
-    }
-
-    void Renderer::Present()
-    {
-        SDL_RenderPresent(this->renderer);
-    }
-
     void Renderer::DrawLine(float x1, float y1, float x2, float y2)
     {
         SDL_RenderLine(this->renderer, x1, y1, x2, y2);
@@ -83,6 +73,17 @@ namespace viper {
         SDL_RenderPoint(this->renderer, x, y);
         //SDL_RenderPoint(this->renderer, random::getRandomInt(width), random::getRandomInt(height));
     }
+
+    void Renderer::Clear()
+    {
+        SDL_RenderClear(this->renderer);
+    }
+
+    void Renderer::Present()
+    {
+        SDL_RenderPresent(this->renderer);
+    }
+
 
     void Renderer::DrawTexture(Texture* texture, float x, float y)
     {

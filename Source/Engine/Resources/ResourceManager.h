@@ -12,6 +12,13 @@ namespace viper {
 		template <typename T, typename ... TArgs>
 		res_t<T>Get(const std::string& name, TArgs&& ... args);
 
+		static ResourceManager& Instance() {
+			static ResourceManager instance;
+			return instance;
+		}
+
+	private:
+		ResourceManager() = default;
 
 
 	private:
@@ -21,17 +28,17 @@ namespace viper {
 	template <typename T, typename ... TArgs>
 	inline res_t<T> ResourceManager::Get(const std::string& name, TArgs&& ... args)
 	{
-		std::string key = tolower(name);
+		std::string key = toLower(name);
 
 		auto iter = resources.find(key);
 		if (iter != resources.end()) {
 			auto base = iter->second;
-			auto derived = std::dynamic_pointer_cast<T>(base);
-			if (derived == nullptr) {
+			auto resource = std::dynamic_pointer_cast<T>(base);
+			if (resource == nullptr) {
 				std::cerr << "Resource type mismatch: " << key << std::endl;
 				return res_t<T>();
 			}
-			return derived;
+			return resource;
 		}
 
 		res_t<T> resource = std::make_shared<T>();

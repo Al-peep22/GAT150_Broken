@@ -5,7 +5,7 @@ namespace viper {
 	class Resource {
 	public:
 		Resource() = default;
-		~Resource() = default;
+		virtual ~Resource() = default;
 	};
 
 	template <typename T = Resource>

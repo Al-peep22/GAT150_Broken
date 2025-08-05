@@ -24,22 +24,21 @@ void Enemy::Update(float dt)
 		direction = direction.Normalized();
 		viper::vec2 forward = viper::vec2{ 1,0 }.Rotate(viper::math::degToRad(transform.rotation));
 
-		float angle = viper::vec2::AngleBetween(forward, direction);
+		float angle = viper::math::radToDeg(vec2::AngleBetween(forward, direction));
 		playerSeen = angle <= 30;
 
 		
 		if (playerSeen) {
 			float angle = vec2::SignedAngleBetween(direction, forward);
 			angle = viper::math::sign(angle);
-			transform.rotation = math::radToDeg(angle * 5 * dt); // Adjust rotation to face the player
+			transform.rotation += math::radToDeg(angle * 5 * dt); // Adjust rotation to face the player
 		}
 
 		
 	}
 
 	// ROTATION
-	vec2 direction{ 1, 0 };
-	vec2 force = vec2{1,0}.Rotate(math::degToRad(transform.rotation)) * speed;
+	viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
 	velocity += force * dt;
 
 	// WRAP POSITION
@@ -50,8 +49,9 @@ void Enemy::Update(float dt)
 	fireTimer -= dt;
 	if (fireTimer <= 0 && playerSeen) {
 		fireTimer = fireTime;
+
 		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
-		viper::Transform transform{ this->transform.position,this->transform.rotation , 2 };
+		viper::Transform transform{ this->transform.position,this->transform.rotation , 2.0f };
 		auto rocket = std::make_unique<Rocket>(transform, rocket_model);
 
 		rocket->speed = 500.0f;

@@ -8,18 +8,27 @@
 using namespace viper;
 void Rocket::Update(float dt)
 {
-	vec2 direction{ 1, 0 };
+
 	vec2 force = vec2{ 1,0 }.Rotate(math::degToRad(transform.rotation)) * speed;
 	velocity = force;
 
+	// WRAP POSITION
 	transform.position.x = math::wrap(transform.position.x, 0.0f, (float)GetEngine().GetRenderer().GetWidth());
 	transform.position.y = math::wrap(transform.position.y, 0.0f, (float)GetEngine().GetRenderer().GetHeight());
 	
-	/*viper::ParticleSystem particle;
+	// PARTICLE EXPLOSION
+	float angle = transform.rotation + viper::random::getReal(-60.0f, 60.0f);
+	viper::vec2 velocity = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(angle));
+	velocity *= viper::random::getReal(80.0f, 150.0f);
+
+
+	viper::Particle particle;
 	particle.position = transform.position;
-	particle.velocity = viper::random::onUnitCircle() * viper::random::getReal(10.0f, 200.0f);
-	particle.color = viper::vec3{ 1,1,1 };
-	particle.lifespan = 2;*/
+	particle.velocity = velocity;
+	particle.color = (tag == "enemy") ? viper::vec3{ 0, 1, 1 } : viper::vec3{ 1, 1, 0 };
+	particle.lifespan = viper::random::getReal(0.15f, 0.3f);
+
+	viper::GetEngine().GetParticleSystem().AddParticle(particle);
 
 	Actor::Update(dt);
 }

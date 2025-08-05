@@ -4,7 +4,7 @@
 namespace viper {
 	Font::~Font() {
 		if (ttfFont != nullptr) {
-			//TTF_CloseFont(ttfFont);
+			TTF_CloseFont(ttfFont);
 		}
 	}
 

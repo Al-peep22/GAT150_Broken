@@ -2,6 +2,7 @@
 
 namespace GameData {
 	std::string gameFont = "ka1.ttf";
+	std::string gameFont2 = "ka2.ttf";
 
     std::vector<viper::vec2> ship_points{
             { 6, 0 },

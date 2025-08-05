@@ -17,18 +17,14 @@
 #include "GameData.h"
 #include "Renderer/ParticleSystem.h"
 
+#include "Resources/ResourceManager.h"
+
 bool SpaceGame::Initialize() {
     scene = std::make_unique<viper::Scene>(this);
 
-	titleFont = std::make_shared<viper::Font>();
-	titleFont->Load(GameData::gameFont, 128);
-
-	uiFont = std::make_shared<viper::Font>();
-	uiFont->Load(GameData::gameFont, 48);
-
-	titleText = std::make_unique<viper::Text>(titleFont);
-	scoreText = std::make_unique<viper::Text>(uiFont);
-	livesText = std::make_unique<viper::Text>(uiFont);
+	titleText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont,128.0f));
+    scoreText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont2, 48.0f));
+    livesText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont2, 48.0f));
 
     return true;
 }
