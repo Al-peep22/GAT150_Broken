@@ -1,10 +1,11 @@
 #include "ParticleSystem.h"
+#include "Renderer.h"
 
 namespace viper {
 	bool ParticleSystem::Initialize(int poolSize)
 	{
 		particles.resize(poolSize); // Reserve space for 1000 particles
-		return false;
+		return true;
 	}
 
 	void ParticleSystem::ShutDown()
@@ -18,6 +19,7 @@ namespace viper {
 			if (particle.active) {
 				particle.lifespan -= dt;
 				particle.active = (particle.lifespan > 0);
+				particle.prevPosition = particle.position;
 				particle.position += particle.velocity * dt;
 			}
 		}
@@ -27,7 +29,8 @@ namespace viper {
 		for (auto& particle : particles) {
 			if (particle.active) {
 				renderer.SetColor(particle.color.x, particle.color.y, particle.color.z);
-				renderer.DrawPoint(particle.position.x, particle.position.y);
+				//renderer.DrawPoint(particle.position.x, particle.position.y);
+				renderer.DrawLine(particle.position.x, particle.position.y, particle.prevPosition.x, particle.prevPosition.y);
 			}
 		}
 	}
