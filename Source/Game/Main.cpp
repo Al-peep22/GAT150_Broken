@@ -52,9 +52,6 @@ int main(int argc, char* argv[]) {
     /*std::shared_ptr<Text> text = std::make_shared<viper::Text>(font);
     text->Create(GetEngine().GetRenderer(), "Hello World", vec3{ 1, 1, 1});*/
 
-    // CREATE TEXTURE
-	auto texture = viper::ResourceManager::Instance().Get<Texture>("sexy-squidward.png", GetEngine().GetRenderer());
-
     // CREATE MAIN LOOP
     SDL_Event e;
     bool quit = false;
@@ -70,6 +67,8 @@ int main(int argc, char* argv[]) {
     GetEngine().GetAudio().AddSound("Yoshi's Island OST - Athletic.mp3", "1music");
     GetEngine().GetAudio().AddSound("game-music-alien-71795.mp3", "music");
 
+    // CREATE TEXTURE
+	auto texture = viper::Resources().Get<Texture>("sexy-squidward.png", GetEngine().GetRenderer());
 
     // CREATE STARS
     vector<vec2> stars;
@@ -77,7 +76,7 @@ int main(int argc, char* argv[]) {
         stars.push_back(vec2{ random::getRandomFloat() * GetEngine().GetRenderer().GetWidth(), random::getRandomFloat() * GetEngine().GetRenderer().GetHeight() });
     }
     
-
+    float rotate = 0.0f;
     //MAIN LOOP
     while (!quit) {
         //time->Tick();
@@ -159,8 +158,10 @@ int main(int argc, char* argv[]) {
         // CREATE BACKGROUND MUSIC
         //viper::GetEngine().GetAudio().PlaySound("music");
         
+		rotate += 0.1f * GetEngine().GetTime().GetDeltaTime();
+
         // DRAW TEXTURE
-        GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 4, rotate);
 
 
 		// DRAW GAME

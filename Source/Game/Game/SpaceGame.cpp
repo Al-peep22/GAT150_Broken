@@ -19,12 +19,14 @@
 
 #include "Resources/ResourceManager.h"
 
+using namespace viper;
+
 bool SpaceGame::Initialize() {
     scene = std::make_unique<viper::Scene>(this);
 
-	titleText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont,128.0f));
-    scoreText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont2, 48.0f));
-    livesText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().Get<viper::Font>(GameData::gameFont2, 48.0f));
+	titleText = std::make_unique<Text>(Resources().GetWithID<Font>("title_font",GameData::gameFont, 128.0f));
+    scoreText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font",GameData::gameFont, 48.0f));
+    livesText = std::make_unique<Text>(Resources().Get<Font>(GameData::gameFont2, 48.0f));
 
     return true;
 }
@@ -52,6 +54,7 @@ void SpaceGame::Update(float dt) {
         std::shared_ptr<viper::Model> ship_model = std::make_shared<viper::Model>(GameData::ship_points, viper::vec3{ 0.37f, 1, 0.16f });
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f , viper::GetEngine().GetRenderer().GetHeight() * 0.5f}, 0, 2 };
         std::unique_ptr<Player> player = std::make_unique<Player>(transform, ship_model);
+        //std::unique_ptr<Player> player = std::make_unique<Player>(transform, viper::Resources().Get<viper::Texture>("texture/blue_01.png"),viper::GetEngine().GetRenderer());
 
         player->speed = 500.0f;
         player->rotationRate = 180.0f;
@@ -145,6 +148,7 @@ void SpaceGame::SpawnEnemy()
 		viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f,500.0f);
         viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 5};
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_model);
+        //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, viper::Resources().Get<viper::Texture>("texture/blue_01.png"), viper::GetEngine().GetRenderer());
 
         enemy->speed = (viper::random::getReal() * 100) + 100;
         enemy->damping = 0.5f;

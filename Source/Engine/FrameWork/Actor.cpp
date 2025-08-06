@@ -1,5 +1,6 @@
 #include "../FrameWork/Actor.h"
 #include "../Renderer/Model.h"
+#include "../Renderer/Renderer.h"
 
 namespace viper {
 	void viper::Actor::Update(float dt)
@@ -22,8 +23,22 @@ namespace viper {
 		model->Draw(renderer, transform);
 
 	}
+
+	void viper::Actor::DrawT(Renderer& renderer)
+	{
+		if (destroyed) return;
+
+		renderer.DrawTexture(texture.get(), transform.position.x, transform.position.y, transform.scale, transform.rotation);
+
+	}
+
 	float Actor::GetRadius()
 	{
 		return (model) ? model->GetRadius() * transform.scale * 0.8f : 0.0f;
 	}
+
+	float Actor::GetRadiusT()
+	{
+		return (texture) ? (texture->GetSize().Length() * 0.5f) * transform.scale * 0.8f : 0.0f;
+	} 
 }

@@ -98,4 +98,17 @@ namespace viper {
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTexture(renderer, texture->texture, NULL, &destRect);
     }
+
+    void Renderer::DrawTexture(Texture* texture, float x, float y, float scale, float angle)
+    {
+		vec2 size = texture->GetSize();
+
+		SDL_FRect destRect;
+		destRect.w = size.x * scale;
+		destRect.h = size.y * scale;
+        destRect.x = x - (destRect.w * 0.5f);
+        destRect.y = y - (destRect.h * 0.5f);
+
+		SDL_RenderTextureRotated(renderer, texture->texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
+    }
 }

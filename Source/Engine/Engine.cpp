@@ -45,9 +45,9 @@ namespace viper {
 
     }
 
-    Engine& GetEngine()
+    /*Engine& GetEngine()
     {
         static Engine engine;
         return engine;
-    }
+    }*/
 }

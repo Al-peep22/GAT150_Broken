@@ -1,7 +1,12 @@
 #pragma once
 #include "Core/Time.h"
-#include <memory>
+#include "Core/Singleton.h"
 #include "Renderer/Renderer.h"
+#include "Renderer/ParticleSystem.h"
+#include "Audio/AudioSystem.h"
+#include "Input/InputSystem.h"
+#include "Resources/ResourceManager.h"
+#include <memory>
 
 namespace viper {
 	class Renderer;
@@ -9,9 +14,8 @@ namespace viper {
 	class InputSystem;
 	class ParticleSystem;
 
-	class Engine {
+	class Engine : public Singleton <Engine> {
 	public:
-		Engine() = default;
 
 		bool Initialize();
 		void Shutdown();
@@ -30,6 +34,10 @@ namespace viper {
 		int height = 1024;
 
 	private:
+		friend class Singleton<Engine>;
+		Engine() = default;
+
+	private:
 		Time time;
 		std::unique_ptr<Renderer> renderer;
 		std::unique_ptr<AudioSystem> audio;
@@ -37,6 +45,6 @@ namespace viper {
 		std::unique_ptr<ParticleSystem> particleSystem;
 	};
 
-	Engine& GetEngine();
+	inline Engine& GetEngine() { return Engine::Instance(); }
 	inline Renderer& GetRenderer() { return GetEngine().GetRenderer(); }
 }
