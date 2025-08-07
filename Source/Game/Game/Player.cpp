@@ -56,8 +56,8 @@ void Player::Update(float dt)
 
 		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
 		viper::Transform transform{ this->transform.position,this->transform.rotation , 2 };
-		auto rocket = std::make_unique<Rocket>(transform, rocket_model);
-		//auto rocket = std::make_unique<Rocket>(transform, transform, viper::Resources().Get<viper::Texture>("texture/blue_01.png"), viper::GetEngine().GetRenderer());
+		//auto rocket = std::make_unique<Rocket>(transform, rocket_model);
+		auto rocket = std::make_unique<Rocket>(transform, viper::Resources().Get<viper::Texture>("blue_rocket.png", viper::GetEngine().GetRenderer()));
 
 		rocket->speed = 1500.0f;
 		rocket->lifespan = 1.5f;

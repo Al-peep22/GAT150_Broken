@@ -34,6 +34,8 @@ using namespace viper;
 
 int main(int argc, char* argv[]) {
 
+    viper::Logger::SetEnabledLevels(viper::LogLevel::Error);
+
 	// SET DIRRECTORY
     viper::file::SetCurrentDirectory("Assets");
     
@@ -68,7 +70,8 @@ int main(int argc, char* argv[]) {
     GetEngine().GetAudio().AddSound("game-music-alien-71795.mp3", "music");
 
     // CREATE TEXTURE
-	auto texture = viper::Resources().Get<Texture>("sexy-squidward.png", GetEngine().GetRenderer());
+	auto squidwardTexture = viper::Resources().Get<Texture>("sexy-squidward.png", GetEngine().GetRenderer());
+	auto shipTexture = viper::Resources().Get<Texture>("blue_01.png", GetEngine().GetRenderer());
 
     // CREATE STARS
     vector<vec2> stars;
@@ -161,7 +164,7 @@ int main(int argc, char* argv[]) {
 		rotate += 0.1f * GetEngine().GetTime().GetDeltaTime();
 
         // DRAW TEXTURE
-        GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 4, rotate);
+        GetEngine().GetRenderer().DrawTexture(squidwardTexture.get(), 30, 30, 4, rotate);
 
 
 		// DRAW GAME

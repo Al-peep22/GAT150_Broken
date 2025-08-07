@@ -22,7 +22,7 @@ namespace viper{
 			for (auto& actorB : actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
 				float distance = (actorA->transform.position - actorB->transform.position).Length();
-				if (distance <= actorA->GetRadius() + actorB->GetRadius()) {
+				if (distance <= actorA->GetRadiusT() + actorB->GetRadiusT()) {
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
 				}
@@ -31,7 +31,8 @@ namespace viper{
 	}
 	void Scene::Draw(Renderer& renderer) {
 		for (auto& actor : actors) {
-			actor->Draw(renderer);
+			//actor->Draw(renderer);
+			actor->DrawT(renderer);
 		}
 	}
 	void Scene::AddActor(std::unique_ptr<Actor> actor)

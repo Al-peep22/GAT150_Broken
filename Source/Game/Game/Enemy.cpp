@@ -52,8 +52,8 @@ void Enemy::Update(float dt)
 
 		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
 		viper::Transform transform{ this->transform.position,this->transform.rotation , 2.0f };
-		auto rocket = std::make_unique<Rocket>(transform, rocket_model);
-		//auto rocket = std::make_unique<Rocket>(transform, transform, viper::Resources().Get<viper::Texture>("texture/blue_01.png"), viper::GetEngine().GetRenderer());
+		//auto rocket = std::make_unique<Rocket>(transform, rocket_model);
+		auto rocket = std::make_unique<Rocket>(transform, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
 
 		rocket->speed = 500.0f;
 		rocket->lifespan = 1.5f;
@@ -69,7 +69,7 @@ void Enemy::Update(float dt)
 
 void Enemy::OnCollision(Actor* other)
 {
-	if (other->tag != tag) {
+	if (tag != other->tag) {
 		destroyed = true;
 		scene->GetGame()->AddPoints(100);
 		for (int i = 0; i < 100; i++) {
