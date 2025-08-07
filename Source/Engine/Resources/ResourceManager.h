@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include <memory>
 #include <iostream>
+#include "Core/Logger.h"
 
 namespace viper {
 	class ResourceManager : public Singleton<ResourceManager> {
@@ -45,7 +46,7 @@ namespace viper {
 			auto base = iter->second;
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			if (resource == nullptr) {
-				std::cerr << "Resource type mismatch: " << key << std::endl;
+				Logger::Error("Resource type mismatch: {}", key);
 				return res_t<T>();
 			}
 			return resource;
@@ -53,7 +54,7 @@ namespace viper {
 
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->Load(name, std::forward<Args>(args)...) == false) {
-			std::cerr << "Failed to load resource: " << name << std::endl;
+			Logger::Error("Failed to load resource: {}", name);
 			return res_t<T>();
 		}
 

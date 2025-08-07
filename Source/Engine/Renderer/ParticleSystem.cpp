@@ -1,5 +1,6 @@
 #include "ParticleSystem.h"
 #include "Renderer.h"
+#include "Core/Logger.h"
 
 namespace viper {
 	bool ParticleSystem::Initialize(int poolSize)
@@ -46,7 +47,7 @@ namespace viper {
 			freeParticle->color = particle.color; // Set the color
 		}
 		else {
-			std::cerr << "No free particle slots available!" << std::endl;
+			Logger::Warning("No free particle slots available!");
 		}
 		particles.push_back(particle); 
 	}

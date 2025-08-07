@@ -1,18 +1,19 @@
 #include "Renderer.h"
 #include <Engine.cpp>
 #include "Texture.h"
+#include "Core/Logger.h"
 
 using namespace std;
 
 namespace viper {
     bool Renderer::Initialize() {
         if (!SDL_Init(SDL_INIT_VIDEO)) {
-            std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
+           Logger::Error("SDL_Init Error: {}", SDL_GetError());
             return false;
         }
 
         if (!TTF_Init()) {
-            std::cerr << "TTF_Init Error: " << SDL_GetError() << std::endl;
+           Logger::Error("TTF_Init Error: {}", SDL_GetError());
             return false;
         }
 
@@ -35,7 +36,7 @@ namespace viper {
         //Create Window
         window = SDL_CreateWindow(name.c_str(), width, height, 0);
         if (window == nullptr) {
-            std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+           Logger::Error("SDL_CreateWindow Error: {}", SDL_GetError());
             SDL_Quit();
             return false;
         }
@@ -43,7 +44,7 @@ namespace viper {
         //Draw In Window
         renderer = SDL_CreateRenderer(window, NULL);
         if (renderer == nullptr) {
-            std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+           Logger::Error("SDL_CreateRenderer Error: {}", SDL_GetError());
             SDL_DestroyWindow(window);
             SDL_Quit();
             return false;

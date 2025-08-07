@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Renderer.h"
 #include "../Math/Vector2.h"
+#include "Core/Logger.h"
 namespace viper {  
 
     Texture::~Texture()
@@ -19,7 +20,7 @@ namespace viper {
         SDL_Surface* surface = IMG_Load(filename.c_str());
         if (!surface)
         {
-            std::cerr << "Could not load image: " << filename << std::endl;
+           Logger::Warning("Could not load image: {}", filename);
             return false;
         }
 
@@ -29,7 +30,7 @@ namespace viper {
         SDL_DestroySurface(surface);
         if (!texture)
         {
-            std::cerr << "Could not create texture: " << filename << std::endl;
+           Logger::Warning("Could not create texture: {}", filename);
             return false;
         }
 
@@ -40,7 +41,7 @@ namespace viper {
    {  
        // https://wiki.libsdl.org/SDL3/SDL_GetTextureSize
        if (!texture) {
-		   std::cerr << "Texture not loaded." << std::endl;
+		  Logger::Warning("Texture not loaded. {}", "");
            return vec2{ 0, 0 };
        }
 

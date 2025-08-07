@@ -1,4 +1,5 @@
 #include "Text.h"
+#include "Core/Logger.h"
 
 namespace viper {
 	Text::~Text() {
@@ -12,7 +13,7 @@ namespace viper {
 		SDL_Color c{ (uint8_t)(color.x * 255), (uint8_t)(color.y * 255), (uint8_t)(color.z * 255), 255 };
 		SDL_Surface* surface = TTF_RenderText_Solid(font->ttfFont, text.c_str(), text.size(), c);
 		if (surface == nullptr) {
-			std::cerr << "Could not create surface.\n";
+			Logger::Error("Could not create surface.\n");
 			return false;
 		}
 
@@ -20,7 +21,7 @@ namespace viper {
 		texture = SDL_CreateTextureFromSurface(renderer.renderer, surface);
 		if (texture == nullptr) {
 			SDL_DestroySurface(surface);
-			std::cerr << "Could not create texture" << SDL_GetError() << std::endl;
+			Logger::Error("Could not create texture", SDL_GetError());
 			return false;
 		}
 

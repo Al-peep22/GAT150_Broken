@@ -1,5 +1,6 @@
 #include "Font.h"
 #include <iostream>
+#include "Core/Logger.h"
 
 namespace viper {
 	Font::~Font() {
@@ -11,7 +12,7 @@ namespace viper {
 	bool Font::Load(const std::string& name, float fontSize) {
 		ttfFont = TTF_OpenFont(name.c_str(), fontSize);
 		if (ttfFont == nullptr) {
-			std::cerr << "Could not load font: " << name << std::endl;
+			Logger::Warning("Could not load font: {}", name);
 			return false;
 		}
 
