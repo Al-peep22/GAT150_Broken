@@ -9,6 +9,6 @@ namespace viper {
 
 	void SpriteRenderer::Draw(Renderer& renderer)
 	{
-		renderer.DrawTexture(Resources().Get<Texture>(textureName, renderer).get(), owner->transform.position.x, owner->transform.position.y);
+		renderer.DrawTexture(Resources().Get<Texture>(textureName, renderer).get(), owner->transform.position.x, owner->transform.position.y, owner->transform.scale, owner->transform.rotation);
 	}
 }
