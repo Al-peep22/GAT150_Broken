@@ -159,12 +159,12 @@ int main(int argc, char* argv[]) {
         */
 
         // CREATE BACKGROUND MUSIC
-        //viper::GetEngine().GetAudio().PlaySound("music");
+        /*viper::GetEngine().GetAudio().PlaySound("music");*/
         
 		rotate += 0.1f * GetEngine().GetTime().GetDeltaTime();
 
         // DRAW TEXTURE
-        GetEngine().GetRenderer().DrawTexture(squidwardTexture.get(), 30, 30, 4, rotate);
+        //GetEngine().GetRenderer().DrawTexture(squidwardTexture.get(), 30, 30, 4, rotate);
 
 
 		// DRAW GAME

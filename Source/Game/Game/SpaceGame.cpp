@@ -33,6 +33,7 @@ bool SpaceGame::Initialize() {
 
 void SpaceGame::Update(float dt) {
 
+
     switch (gameState) {
     case SpaceGame::GameState::Initialize:
         gameState = GameState::Title;
@@ -49,6 +50,9 @@ void SpaceGame::Update(float dt) {
         break;
     case SpaceGame::GameState::StartRound:
     {
+
+        viper::GetEngine().GetAudio().PlaySound("music");
+
         scene->RemoveAllActors();
         // CREATE PLAYER
         std::shared_ptr<viper::Model> ship_model = std::make_shared<viper::Model>(GameData::ship_points, viper::vec3{ 0.37f, 1, 0.16f });
