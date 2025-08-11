@@ -71,6 +71,9 @@
     <ClCompile Include="Renderer\Texture.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\EngineCPH.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Math.h">
@@ -147,6 +150,12 @@
     </ClInclude>
     <ClInclude Include="Core\Logger.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\EngineMinimal.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\EngineCPH.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -94,6 +94,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EngineCPH.h, GameCPH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EngineCPH.h, GameCPH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,6 +115,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EngineCPH.h, GameCPH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EngineCPH.h, GameCPH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +136,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EngineCPH.h, GameCPH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EngineCPH.h, GameCPH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +157,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EngineCPH.h, GameCPH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EngineCPH.h, GameCPH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +172,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game\Enemy.cpp" />
+    <ClCompile Include="Game\GameCPH.cpp" />
     <ClCompile Include="Game\GameData.cpp" />
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\Rocket.cpp" />
@@ -173,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Enemy.h" />
+    <ClInclude Include="Game\GameCPH.h" />
     <ClInclude Include="Game\GameData.h" />
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Rocket.h" />
