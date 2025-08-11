@@ -6,7 +6,9 @@ namespace viper{
 	void Scene::Update(float dt) {
 		//update all actors
 		for (auto& actor : actors) {
-			actor->Update(dt);
+			if (actor->active) { // Skip destroyed actors
+				actor->Update(dt);
+			}
 		}
 
 		//remove destroyed actors
@@ -32,7 +34,9 @@ namespace viper{
 	void Scene::Draw(Renderer& renderer) {
 		for (auto& actor : actors) {
 			//actor->Draw(renderer);
-			actor->DrawT(renderer);
+			if (actor->active) {
+				actor->DrawT(renderer);
+			}
 		}
 	}
 	void Scene::AddActor(std::unique_ptr<Actor> actor)

@@ -204,10 +204,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Components\SpriteRenderer.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Time.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Engine\EngineCPH.cpp" />
+    <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FrameWork\Actor.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
@@ -220,6 +222,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Components\RendererComponent.h" />
+    <ClInclude Include="Components\SpriteRenderer.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="Core\Random.h" />
@@ -230,7 +234,9 @@
     <ClInclude Include="Engine\EngineCPH.h" />
     <ClInclude Include="Engine\EngineMinimal.h" />
     <ClInclude Include="FrameWork\Actor.h" />
+    <ClInclude Include="FrameWork\Component.h" />
     <ClInclude Include="FrameWork\Game.h" />
+    <ClInclude Include="Framework\Object.h" />
     <ClInclude Include="FrameWork\Scene.h" />
     <ClInclude Include="Input\InputSystem.h" />
     <ClInclude Include="Math\Math.h" />

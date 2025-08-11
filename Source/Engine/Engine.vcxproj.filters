@@ -30,6 +30,9 @@
     <Filter Include="Source\Resources">
       <UniqueIdentifier>{68f2e72f-e9d6-4de7-83e2-7c864f6c57e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Components">
+      <UniqueIdentifier>{d2239414-e622-49db-85db-4e3f4294d5b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -72,6 +75,12 @@
       <Filter>Source\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Engine\EngineCPH.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="FileName.cpp">
+      <Filter>Source\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteRenderer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,6 +165,18 @@
     </ClInclude>
     <ClInclude Include="Engine\EngineCPH.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Object.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Component.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RendererComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteRenderer.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

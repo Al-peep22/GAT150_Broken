@@ -3,10 +3,11 @@
 #include <string>
 #include <memory>
 #include <Renderer/Texture.h>
+#include "FrameWork/Object.h"
 //#include "../Renderer/Model.h"
 
 namespace viper {
-	class Actor {
+	class Actor : public Object{
 	public:
 		std::string name;
 		std::string tag;
@@ -31,6 +32,9 @@ namespace viper {
 			transform{ transform }, 
 			texture{ texture } {}
 
+		Actor(const viper::Transform& transform) :
+			transform{ transform } {}
+
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 		virtual void DrawT(class Renderer& renderer);
@@ -42,7 +46,10 @@ namespace viper {
 		float GetRadius();
 		float GetRadiusT();
 
+		void AddComponent(std::unique_ptr<class Component> component);
+
 	protected:
+		std::vector<std::unique_ptr<class Component>> components;
 		res_t<Texture> texture;
 		std::shared_ptr<Model> model;
 		

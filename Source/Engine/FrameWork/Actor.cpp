@@ -1,6 +1,7 @@
 #include "../FrameWork/Actor.h"
 #include "../Renderer/Model.h"
 #include "../Renderer/Renderer.h"
+#include "../Components/RendererComponent.h"
 
 namespace viper {
 	void viper::Actor::Update(float dt)
@@ -10,6 +11,12 @@ namespace viper {
 		if (lifespan != 0) {
 			lifespan -= dt;
 			destroyed = (lifespan <= 0);
+		}
+
+		for (auto& component : components) {
+			if (component->active) {
+				component->Update(dt);
+			}
 		}
 
 		transform.position += velocity * dt;
@@ -28,7 +35,16 @@ namespace viper {
 	{
 		if (destroyed) return;
 
-		renderer.DrawTexture(texture.get(), transform.position.x, transform.position.y, transform.scale, transform.rotation);
+		for (auto& component : components) {
+			if (component->active) {
+				auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
+				if (rendererComponent) {
+					rendererComponent->Draw(renderer);
+				}
+			}
+		}
+
+		//renderer.DrawTexture(texture.get(), transform.position.x, transform.position.y, transform.scale, transform.rotation);
 
 	}
 
@@ -39,6 +55,13 @@ namespace viper {
 
 	float Actor::GetRadiusT()
 	{
-		return (texture) ? (texture->GetSize().Length() * 0.5f) * transform.scale * 0.3f : 0.0f;
-	} 
+		return 50.0f;//(texture) ? (texture->GetSize().Length() * 0.5f) * transform.scale * 0.3f : 0.0f;
+	}
+
+	void Actor::AddComponent(std::unique_ptr<Component> component)
+	{
+		component->owner = this; // Set the owner of the component to this actor
+		components.push_back(std::move(component));
+	}
+
 }
