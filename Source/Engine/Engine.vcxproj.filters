@@ -83,6 +83,15 @@
     <ClCompile Include="Components\SpriteRenderer.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CircleCollider2D.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RigidBody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\MeshRenderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Math.h">
@@ -176,6 +185,15 @@
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\SpriteRenderer.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshRenderer.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RigidBody.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CircleCollider2D.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

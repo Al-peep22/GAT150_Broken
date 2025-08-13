@@ -51,7 +51,7 @@ namespace viper {
 	protected:
 		std::vector<std::unique_ptr<class Component>> components;
 		res_t<Texture> texture;
-		std::shared_ptr<Model> model;
+		std::shared_ptr<class Model> model;
 		
 	};
 }
