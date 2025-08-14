@@ -28,7 +28,7 @@
     <ClCompile Include="Game\Rocket.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameCPH.cpp">
+    <ClCompile Include="GameCPH.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,7 +48,7 @@
     <ClInclude Include="Game\Rocket.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameCPH.h">
+    <ClInclude Include="GameCPH.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

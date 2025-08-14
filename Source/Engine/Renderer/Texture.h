@@ -2,6 +2,7 @@
 #include <string>
 #include "../Math/Vector2.h"
 #include "Resources/Resource.h"
+//#include <SDL3_image/SDL_image.h>
 
 namespace viper {
 	class Texture : public Resource{
@@ -16,6 +17,6 @@ namespace viper {
 		friend class Renderer;
 
 	private:
-		struct SDL_Texture* texture{ nullptr };
+		SDL_Texture* texture{ nullptr };
 	};
 }

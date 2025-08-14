@@ -74,22 +74,22 @@
     <ClCompile Include="Renderer\Texture.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\EngineCPH.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="FileName.cpp">
       <Filter>Source\FrameWork</Filter>
     </ClCompile>
     <ClCompile Include="Components\SpriteRenderer.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CircleCollider2D.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="Components\MeshRenderer.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\RigidBody.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\MeshRenderer.cpp">
+    <ClCompile Include="Components\CircleCollider2D.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCPH.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -169,12 +169,6 @@
     <ClInclude Include="Core\Logger.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\EngineMinimal.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\EngineCPH.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Object.h">
       <Filter>Source\FrameWork</Filter>
     </ClInclude>
@@ -195,6 +189,12 @@
     </ClInclude>
     <ClInclude Include="Components\CircleCollider2D.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCPH.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMinimal.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

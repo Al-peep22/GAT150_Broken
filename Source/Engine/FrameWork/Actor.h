@@ -4,7 +4,8 @@
 #include <memory>
 #include <Renderer/Texture.h>
 #include "FrameWork/Object.h"
-//#include "../Renderer/Model.h"
+#include <vector>
+#include "Component.h"
 
 namespace viper {
 	class Actor : public Object{
@@ -46,10 +47,10 @@ namespace viper {
 		float GetRadius();
 		float GetRadiusT();
 
-		void AddComponent(std::unique_ptr<class Component> component);
+		void AddComponent(std::unique_ptr<Component> component);
 
 	protected:
-		std::vector<std::unique_ptr<class Component>> components;
+		std::vector<std::unique_ptr<Component>> components;
 		res_t<Texture> texture;
 		std::shared_ptr<class Model> model;
 		

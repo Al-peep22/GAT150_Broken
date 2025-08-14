@@ -1,3 +1,22 @@
+// standard library
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
+#include <list>
+#include <cmath>
+
+// third party library
+#include <../ThirdParty/fmod/core/inc/fmod.hpp> 
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
+
 //core
 #include "Core/File.h"
 #include "Core/Logger.h"
@@ -20,23 +39,3 @@
 //resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
-
-// third party library
-#include <../ThirdParty/fmod/core/inc/fmod.hpp> 
-#include <SDL3/SDL.h>
-#include <SDL3_ttf/SDL_ttf.h>
-#include <SDL3_image/SDL_image.h>
-
-// standard library
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <map>
-#include <algorithm>
-#include <list>
-#include <cmath>
-

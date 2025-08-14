@@ -1,5 +1,7 @@
+#pragma once
 #include <string>
 #include <vector>
+
 namespace viper::file {
     std::string GetCurrentDirectory();
     bool SetCurrentDirectory(const std::string& path);
