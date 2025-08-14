@@ -227,6 +227,7 @@
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
     <ClInclude Include="Components\CircleCollider2D.h" />
+    <ClInclude Include="Components\ColliderComponent.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\RendererComponent.h" />
     <ClInclude Include="Components\RigidBody.h" />

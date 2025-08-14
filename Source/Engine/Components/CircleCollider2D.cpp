@@ -4,9 +4,19 @@
 namespace viper {
 	void CircleCollider2D::Update(float dt)
 	{
+		//
 	}
 
-	void CircleCollider2D::Draw(Renderer& renderer)
+	bool CircleCollider2D::CheckCollision(ColliderComponent& other)
 	{
+		float distance = (owner->transform.position - other.owner->transform.position).Length();
+
+		auto circleCollider = dynamic_cast<CircleCollider2D*>(&other);
+		if (circleCollider)
+		{
+			float radiusSum = radius + circleCollider->radius;
+			if (distance <= radiusSum) return true;
+		}
+		return false;
 	}
 }

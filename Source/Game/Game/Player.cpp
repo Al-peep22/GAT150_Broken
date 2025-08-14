@@ -41,7 +41,12 @@ void Player::Update(float dt)
 	// DIRECTION AND VELOCITY
 	viper::vec2 direction{1,0};
 	viper::vec2 force = direction.Rotate(viper::math::degToRad(transform.rotation))*thrust*speed;
-	velocity += force * dt;
+	//velocity += force * dt;
+
+	auto* rb = GetComponent<viper::RigidBody>();
+	if (rb) {
+		rb->velocity += force * dt;
+	}
 
 	// WRAP POSITION
 	transform.position.x = math::wrap(transform.position.x, 0.0f, (float)GetEngine().GetRenderer().GetWidth());
@@ -69,6 +74,10 @@ void Player::Update(float dt)
 		spriteRenderer->textureName = "blue_rocket.png";
 
 		rocket->AddComponent(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<viper::RigidBody>();
+		//rb->damping = 0.5f;
+		rocket->AddComponent(std::move(rb));
 
 		scene->AddActor(std::move(rocket));
 	}

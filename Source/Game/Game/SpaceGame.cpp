@@ -19,6 +19,7 @@
 
 #include "Resources/ResourceManager.h"
 #include <Components/SpriteRenderer.h>
+#include "Components/RigidBody.h"
 
 using namespace viper;
 
@@ -63,7 +64,7 @@ void SpaceGame::Update(float dt) {
 
         player->speed = 500.0f;
         player->rotationRate = 180.0f;
-        player->damping = 0.5f;
+        //player->damping = 0.5f;
         player->name = "player";
         player->tag = "player"; 
 
@@ -71,6 +72,10 @@ void SpaceGame::Update(float dt) {
         spriteRenderer->textureName = "blue_01.png";
 
         player->AddComponent(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<viper::RigidBody>();
+        rb->damping = 1.5f;
+        player->AddComponent(std::move(rb));
 
         scene->AddActor(std::move(player));
 
@@ -161,7 +166,7 @@ void SpaceGame::SpawnEnemy()
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform);//, viper::Resources().Get<viper::Texture>("large_red_01.png", viper::GetEngine().GetRenderer()));
 
         enemy->speed = (viper::random::getReal() * 100) + 100;
-        enemy->damping = 0.5f;
+        //enemy->damping = 0.5f;
         enemy->fireTime = 1;
         enemy->fireTimer = 1;
         enemy->name = "enemy";
@@ -171,6 +176,10 @@ void SpaceGame::SpawnEnemy()
         spriteRenderer->textureName = "large_red_01.png";
 
         enemy->AddComponent(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<viper::RigidBody>();
+        rb->damping = 0.5f;
+        enemy->AddComponent(std::move(rb));
 
         scene->AddActor(std::move(enemy));
 

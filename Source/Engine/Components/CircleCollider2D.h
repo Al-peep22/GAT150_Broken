@@ -1,14 +1,17 @@
 #pragma once
-#include "Components/RendererComponent.h"
+#include "Components/ColliderComponent.h"
 
 namespace viper {
-	class CircleCollider2D : public RendererComponent {
-		/*public:
-			std::string textureName;*/
+	class CircleCollider2D : public ColliderComponent {
+	public:
+		float radius{0};
 	public:
 		CircleCollider2D() = default;
-		void Update(float dt) override;
-		void Draw(class Renderer& renderer) override;
+
 	private:
+
+		// Inherited via ColliderComponent
+		void Update(float dt) override;
+		bool CheckCollision(ColliderComponent& other) override;
 	};
 }

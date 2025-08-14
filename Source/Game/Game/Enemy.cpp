@@ -1,3 +1,4 @@
+//#include "../GameCPH.h"
 #include "Enemy.h"
 #include "Engine.h"
 #include "./FrameWork/Scene.h"
@@ -40,7 +41,13 @@ void Enemy::Update(float dt)
 
 	// ROTATION
 	viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
-	velocity += force * dt;
+	//velocity += force * dt;
+	//GetComponent<viper::RigidBody>()->velocity += force * dt;
+	
+	auto* rb = GetComponent<viper::RigidBody>();
+	if (rb) {
+		rb->velocity += force * dt;
+	}
 
 	// WRAP POSITION
 	transform.position.x = math::wrap(transform.position.x, 0.0f, (float)GetEngine().GetRenderer().GetWidth());
@@ -65,6 +72,10 @@ void Enemy::Update(float dt)
 		spriteRenderer->textureName = "red_rocket.png";
 
 		rocket->AddComponent(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<viper::RigidBody>();
+		//rb->damping = 0.5f;
+		rocket->AddComponent(std::move(rb));
 
 		scene->AddActor(std::move(rocket));
 	}

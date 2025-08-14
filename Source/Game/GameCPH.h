@@ -2,6 +2,12 @@
 
 #include "Engine.h"
 
+// components
+#include "Components/SpriteRenderer.h"
+#include "Components/RigidBody.h"
+#include "Components/RendererComponent.h"
+
+
 // audio
 #include "Audio/AudioSystem.h"
 

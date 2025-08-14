@@ -10,7 +10,11 @@ void Rocket::Update(float dt)
 {
 
 	vec2 force = vec2{ 1,0 }.Rotate(math::degToRad(transform.rotation)) * speed;
-	velocity = force;
+	//velocity = force;
+	auto* rb = GetComponent<viper::RigidBody>();
+	if (rb) {
+		rb->velocity = force;
+	}
 
 	// WRAP POSITION
 	transform.position.x = math::wrap(transform.position.x, 0.0f, (float)GetEngine().GetRenderer().GetWidth());
