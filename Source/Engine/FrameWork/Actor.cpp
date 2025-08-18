@@ -1,5 +1,5 @@
 #include "../FrameWork/Actor.h"
-#include "../Renderer/Model.h"
+#include "../Renderer/Mesh.h"
 #include "../Renderer/Renderer.h"
 #include "../Components/RendererComponent.h"
 
@@ -27,7 +27,7 @@ namespace viper {
 	{
 		if (destroyed) return;
 
-		model->Draw(renderer, transform);
+		Mesh->Draw(renderer, transform);
 
 	}
 
@@ -50,7 +50,7 @@ namespace viper {
 
 	/*float Actor::GetRadius()
 	{
-		return (model) ? model->GetRadius() * transform.scale * 0.8f : 0.0f;
+		return (Mesh) ? Mesh->GetRadius() * transform.scale * 0.8f : 0.0f;
 	}*/
 
 	float Actor::GetRadiusT()

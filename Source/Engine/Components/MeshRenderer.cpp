@@ -1,5 +1,6 @@
 #include "EngineCPH.h"
 #include "MeshRenderer.h"
+#include "Renderer/Mesh.h"
 
 namespace viper {
 
@@ -9,6 +10,10 @@ namespace viper {
 
 	void MeshRenderer::Draw(Renderer& renderer)
 	{
+		auto mesh = Resources().Get<Mesh>(meshName);
+		if (mesh) {
+			mesh->Draw(renderer, owner->transform);
+		}
 	}
 
 }

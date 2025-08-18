@@ -9,8 +9,8 @@ public:
 	float fireTimer = 0.0f;
 
 	Player() = default;
-	Player(const viper::Transform& transform, std::shared_ptr<viper::Model> model) :
-		Actor{ transform, model } {
+	Player(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
+		Actor{ transform, Mesh } {
 	}
 	
 	Player(const viper::Transform& transform, viper::res_t<viper::Texture> texture) :

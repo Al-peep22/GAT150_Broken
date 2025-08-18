@@ -8,7 +8,7 @@
 #include "GameData.h"
 #include <Math/Vector3.h>
 #include <Math/Vector2.h>
-#include "Renderer/Model.h"
+#include "Renderer/Mesh.h"
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
 #include <Components/SpriteRenderer.h>
@@ -61,9 +61,9 @@ void Enemy::Update(float dt)
 	if (fireTimer <= 0 && playerSeen) {
 		fireTimer = fireTime;
 
-		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
+		std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
 		viper::Transform transform{ this->transform.position,this->transform.rotation , 2.0f };
-		//auto rocket = std::make_unique<Rocket>(transform, rocket_model);
+		//auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
 		auto rocket = std::make_unique<Rocket>(transform);//, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
 
 		rocket->speed = 500.0f;

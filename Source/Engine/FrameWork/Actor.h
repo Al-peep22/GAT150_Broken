@@ -22,9 +22,9 @@ namespace viper {
 
 	public:
 		Actor() = default;
-		Actor(const viper::Transform& transform, std::shared_ptr<class Model> model) :
+		Actor(const viper::Transform& transform, std::shared_ptr<class Mesh> Mesh) :
 			transform{ transform }, 
-			model{ model } {}
+			Mesh{ Mesh } {}
 
 		Actor(const viper::Transform& transform, viper::res_t<viper::Texture> texture) :
 			transform{ transform }, 
@@ -55,7 +55,7 @@ namespace viper {
 	protected:
 		std::vector<std::unique_ptr<Component>> components;
 		res_t<Texture> texture;
-		std::shared_ptr<class Model> model;
+		std::shared_ptr<class Mesh> Mesh;
 		
 	};
 

@@ -50,7 +50,7 @@
     <ClCompile Include="Audio\AudioSystem.cpp">
       <Filter>Source\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\Model.cpp">
+    <ClCompile Include="Renderer\Mesh.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="FrameWork\Actor.cpp">
@@ -127,7 +127,7 @@
     <ClInclude Include="Core\StringHelper.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Model.h">
+    <ClInclude Include="Renderer\Mesh.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Math\Transform.h">
@@ -210,6 +210,9 @@
     </ClInclude>
     <ClInclude Include="Audio\AudioClip.h">
       <Filter>Source\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AudioSource.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

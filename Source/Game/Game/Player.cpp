@@ -6,7 +6,7 @@
 #include "GameData.h"
 #include <Math/Vector3.h>
 #include "Rocket.h"
-#include "Renderer/Model.h"
+#include "Renderer/Mesh.h"
 #include "FrameWork/Scene.h"
 #include "SpaceGame.h"
 #include "Audio/AudioSystem.h"
@@ -67,9 +67,9 @@ void Player::Update(float dt)
 			viper::GetEngine().GetAudio().PlaySound(*sound);
 		}
 
-		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
+		std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
 		viper::Transform transform{ this->transform.position,this->transform.rotation , 2 };
-		//auto rocket = std::make_unique<Rocket>(transform, rocket_model);
+		//auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
 		auto rocket = std::make_unique<Rocket>(transform);//, viper::Resources().Get<viper::Texture>("blue_rocket.png", viper::GetEngine().GetRenderer()));
 
 		rocket->speed = 1500.0f;

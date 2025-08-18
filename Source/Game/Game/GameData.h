@@ -1,3 +1,4 @@
+#include <Math/Vector2.h>
 
 namespace GameData {
 	extern std::string gameFont;

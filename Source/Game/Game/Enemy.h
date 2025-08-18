@@ -7,8 +7,8 @@ public:
 	float fireTime = 0;
 
 	Enemy() = default;
-	Enemy(const viper::Transform& transform, std::shared_ptr<viper::Model> model) :
-		Actor{ transform, model } {
+	Enemy(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
+		Actor{ transform, Mesh } {
 	}
 	
 	Enemy(const viper::Transform& transform, viper::res_t<viper::Texture> texture) :

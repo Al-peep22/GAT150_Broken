@@ -3,8 +3,8 @@
 
 namespace viper {
 	class MeshRenderer : public RendererComponent {
-		/*public:
-			std::string textureName;*/
+	public:
+		std::string meshName;
 	public:
 		MeshRenderer() = default;
 		void Update(float dt) override;

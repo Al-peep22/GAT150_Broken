@@ -28,13 +28,13 @@ namespace viper {
         SDL_Quit();
     }
 
-    bool Renderer::CreateWindow(const string& name, int width, int height)
+    bool Renderer::CreateWindow(const string& name, int width, int height, bool fullscreen)
     {
         this->width = width;
         this->height = height;
 
         //Create Window
-        window = SDL_CreateWindow(name.c_str(), width, height, 0);
+        window = SDL_CreateWindow(name.c_str(), width, height, fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
         if (window == nullptr) {
            Logger::Error("SDL_CreateWindow Error: {}", SDL_GetError());
             SDL_Quit();
@@ -49,7 +49,10 @@ namespace viper {
             SDL_Quit();
             return false;
         }
-        return false;
+
+        SDL_SetRenderLogicalPresentation(renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
+
+        return true;
     }
 
     void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)

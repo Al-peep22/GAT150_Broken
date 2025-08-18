@@ -1,4 +1,8 @@
 #include "GameData.h"
+#include <string>
+#include <vector>
+
+
 
 namespace GameData {
 	std::string gameFont = "ka1.ttf";

@@ -9,7 +9,7 @@ namespace viper {
     {
         this->renderer = std::make_unique<Renderer>();
         this->renderer->Initialize();
-        this->renderer->CreateWindow("Screen", this->width, this->height);
+        this->renderer->CreateWindow("Screen", this->width, this->height, false);
 
         this->input = std::make_unique<InputSystem>();
         input->Initialize();

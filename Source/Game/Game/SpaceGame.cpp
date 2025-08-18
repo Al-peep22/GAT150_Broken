@@ -5,7 +5,7 @@
 #include "Math/Vector2.h"
 #include "Player.h"
 //#include "Renderer/Font.h"
-#include "Renderer/Model.h"
+#include "Renderer/Mesh.h"
 #include "Renderer/Renderer.h"
 //#include "Renderer/Text.h"
 #include "Engine.h"
@@ -59,9 +59,9 @@ void SpaceGame::Update(float dt) {
 
         scene->RemoveAllActors();
         // CREATE PLAYER
-        std::shared_ptr<viper::Model> ship_model = std::make_shared<viper::Model>(GameData::ship_points, viper::vec3{ 0.37f, 1, 0.16f });
+        std::shared_ptr<viper::Mesh> ship_Mesh = std::make_shared<viper::Mesh>(GameData::ship_points, viper::vec3{ 0.37f, 1, 0.16f });
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f , viper::GetEngine().GetRenderer().GetHeight() * 0.5f}, 0, 2 };
-        //std::unique_ptr<Player> player = std::make_unique<Player>(transform, ship_model);
+        //std::unique_ptr<Player> player = std::make_unique<Player>(transform, ship_Mesh);
         std::unique_ptr<Player> player = std::make_unique<Player>(transform);//, viper::Resources().Get<viper::Texture>("blue_01.png", viper::GetEngine().GetRenderer()));
 
         player->speed = 500.0f;
@@ -163,12 +163,12 @@ void SpaceGame::SpawnEnemy()
 	Player* player = scene->GetActorByName<Player>("player");
     if (player) {
 
-        std::shared_ptr<viper::Model> enemy_model = std::make_shared<viper::Model>(GameData::enemy_points, viper::vec3{ 1, 0.18f, 0.18f });
+        std::shared_ptr<viper::Mesh> enemy_Mesh = std::make_shared<viper::Mesh>(GameData::enemy_points, viper::vec3{ 1, 0.18f, 0.18f });
 
         // spawn at random position (not on player)
 		viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f,500.0f);
         viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 2};
-        //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_model);
+        //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_Mesh);
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform);//, viper::Resources().Get<viper::Texture>("large_red_01.png", viper::GetEngine().GetRenderer()));
 
         enemy->speed = (viper::random::getReal() * 100) + 100;
@@ -178,10 +178,13 @@ void SpaceGame::SpawnEnemy()
         enemy->name = "enemy";
         enemy->tag = "enemy";
 
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        /*auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
         spriteRenderer->textureName = "large_red_01.png";
 
-        enemy->AddComponent(std::move(spriteRenderer));
+        enemy->AddComponent(std::move(spriteRenderer));*/
+		auto meshRenderer = std::make_unique<viper::MeshRenderer>();
+		meshRenderer->meshName = "Meshes/enemy.txt";
+		enemy->AddComponent(std::move(meshRenderer));
 
         auto rb = std::make_unique<viper::RigidBody>();
         rb->damping = 0.5f;
