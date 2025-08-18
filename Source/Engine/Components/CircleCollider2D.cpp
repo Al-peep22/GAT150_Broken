@@ -11,6 +11,7 @@ namespace viper {
 	{
 		float distance = (owner->transform.position - other.owner->transform.position).Length();
 
+		//check circle to circle collision
 		auto circleCollider = dynamic_cast<CircleCollider2D*>(&other);
 		if (circleCollider)
 		{

@@ -10,6 +10,7 @@
 //#include "Renderer/Text.h"
 #include "Engine.h"
 #include "Input/InputSystem.h"
+#include "../GameCPH.h"
 #include "Audio/AudioSystem.h"
 
 #include <vector>
@@ -20,6 +21,7 @@
 #include "Resources/ResourceManager.h"
 #include <Components/SpriteRenderer.h>
 #include "Components/RigidBody.h"
+#include "Components/CircleCollider2D.h"
 
 using namespace viper;
 
@@ -76,6 +78,10 @@ void SpaceGame::Update(float dt) {
         auto rb = std::make_unique<viper::RigidBody>();
         rb->damping = 1.5f;
         player->AddComponent(std::move(rb));
+
+		auto collider = std::make_unique<viper::CircleCollider2D>();
+		collider->radius = 60.0f;
+        player->AddComponent(std::move(collider));
 
         scene->AddActor(std::move(player));
 
@@ -180,6 +186,10 @@ void SpaceGame::SpawnEnemy()
         auto rb = std::make_unique<viper::RigidBody>();
         rb->damping = 0.5f;
         enemy->AddComponent(std::move(rb));
+
+        auto collider = std::make_unique<viper::CircleCollider2D>();
+        collider->radius = 60.0f;
+        enemy->AddComponent(std::move(collider));
 
         scene->AddActor(std::move(enemy));
 

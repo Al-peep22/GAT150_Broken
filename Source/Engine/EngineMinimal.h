@@ -24,6 +24,7 @@
 #include "Core/Singleton.h"
 #include "Core/StringHelper.h"
 #include "Core/Time.h"
+#include "Core/Json.h"
 
 //math
 #include "Math/Math.h"

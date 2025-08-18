@@ -25,6 +25,11 @@
 #include <sstream>
 #include "Resources/ResourceManager.h"
 #include "Renderer/Texture.h"
+#include "Core/Json.h"
+
+#include "../../rapidjson/include/rapidjson/istreamwrapper.h"
+#include "../../rapidjson/include/rapidjson/document.h"
+
 
 
 using namespace std;

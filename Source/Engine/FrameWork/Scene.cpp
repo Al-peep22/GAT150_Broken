@@ -2,6 +2,8 @@
 #include "Actor.h"
 #include "../Core/StringHelper.h"
 #include "Scene.h"
+#include "Components/ColliderComponent.h"
+
 namespace viper{
 	void Scene::Update(float dt) {
 		//update all actors
@@ -23,8 +25,13 @@ namespace viper{
 		for (auto& actorA : actors) {
 			for (auto& actorB : actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
-				float distance = (actorA->transform.position - actorB->transform.position).Length();
-				if (distance <= actorA->GetRadiusT() + actorB->GetRadiusT()) {
+				
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+				
+				if (!colliderA || !colliderB) continue; // Skip if no collider
+
+				if (colliderA->CheckCollision(*colliderB)) {
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
 				}
