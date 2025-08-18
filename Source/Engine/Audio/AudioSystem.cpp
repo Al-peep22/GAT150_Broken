@@ -4,6 +4,7 @@
 #include "../../ThirdParty/fmod/core/inc/fmod_errors.h"
 #include "../../ThirdParty/fmod/core/inc/fmod.hpp"
 #include "Core/Logger.h"
+#include "AudioClip.h"
 
 using namespace std;
 namespace viper {
@@ -81,6 +82,13 @@ namespace viper {
         FMOD_RESULT result = system->playSound(sounds[key], 0, false, nullptr);
         if (!CheckFMODResult(result)) { return false; }
 
+        return true;
+    }
+
+    bool AudioSystem::PlaySound(AudioClip& audioClip)
+    {
+        FMOD_RESULT result = system->playSound(audioClip.sound, 0, false, nullptr);
+        if (!CheckFMODResult(result)) { return false; }
         return true;
     }
 

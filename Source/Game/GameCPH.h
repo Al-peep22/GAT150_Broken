@@ -10,6 +10,7 @@
 
 // audio
 #include "Audio/AudioSystem.h"
+#include "Audio/AudioClip.h"
 
 // input
 #include "Input/InputSystem.h"

@@ -12,6 +12,9 @@
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
 #include <Components/SpriteRenderer.h>
+#include <Components/RigidBody.h>
+#include <Components/CircleCollider2D.h>
+
 using namespace viper;
 void Enemy::Update(float dt)
 {
@@ -76,6 +79,10 @@ void Enemy::Update(float dt)
 		auto rb = std::make_unique<viper::RigidBody>();
 		//rb->damping = 0.5f;
 		rocket->AddComponent(std::move(rb));
+
+		auto collider = std::make_unique<viper::CircleCollider2D>();
+		collider->radius = 10;
+		rocket->AddComponent(std::move(collider));
 
 		scene->AddActor(std::move(rocket));
 	}

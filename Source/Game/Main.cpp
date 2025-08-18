@@ -43,6 +43,9 @@ int main(int argc, char* argv[]) {
 
 	// SET DIRRECTORY
     viper::file::SetCurrentDirectory("Assets");
+
+	// CHECK DIRRECTORY
+    //Logger::Info("current directory{}", viper::file::GetCurrentDirectory());
     
 	// INITIALIZE ENGINE
     GetEngine().Initialize();

@@ -25,6 +25,7 @@ namespace viper {
 
     void Engine::Shutdown()
     {
+		Resources().Clear();
 		this->particleSystem->ShutDown();
         this->renderer->ShutDown();
         this->input->ShutDown();

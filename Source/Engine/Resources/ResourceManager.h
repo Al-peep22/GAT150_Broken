@@ -11,6 +11,9 @@
 namespace viper {
 	class ResourceManager : public Singleton<ResourceManager> {
 	public:
+
+		void Clear() { resources.clear(); }
+
 		template <typename T, typename ... Args>
 		inline res_t<T>Get(const std::string& name, Args&& ... args);
 		

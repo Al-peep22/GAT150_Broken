@@ -13,6 +13,9 @@
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
 #include <Components/SpriteRenderer.h>
+#include <Components/RigidBody.h>
+#include <Components/CircleCollider2D.h>
+#include "Audio/AudioClip.h"
 
 using namespace viper;
 
@@ -58,7 +61,11 @@ void Player::Update(float dt)
 		fireTimer = fireTime;
 		
 		// PLAY ROCKET SHOOT SOUND
-		viper::GetEngine().GetAudio().PlaySound("clap");
+		//viper::GetEngine().GetAudio().PlaySound("clap");
+		auto sound = viper::Resources().Get<viper::AudioClip>("clap.wav", viper::GetEngine().GetAudio()).get();
+		if (sound) {
+			viper::GetEngine().GetAudio().PlaySound(*sound);
+		}
 
 		std::shared_ptr<viper::Model> rocket_model = std::make_shared<viper::Model>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
 		viper::Transform transform{ this->transform.position,this->transform.rotation , 2 };
@@ -78,6 +85,10 @@ void Player::Update(float dt)
 		auto rb = std::make_unique<viper::RigidBody>();
 		//rb->damping = 0.5f;
 		rocket->AddComponent(std::move(rb));
+
+		auto collider = std::make_unique<viper::CircleCollider2D>();
+		collider->radius = 10;
+		rocket->AddComponent(std::move(collider));
 
 		scene->AddActor(std::move(rocket));
 	}
