@@ -14,8 +14,10 @@
 #include <Components/SpriteRenderer.h>
 #include <Components/RigidBody.h>
 #include <Components/CircleCollider2D.h>
+#include "Core/Factory.h"
+#include "FrameWork/Actor.h"
 
-FACTORY_REGISTER(Enemy)
+FACTORY_REGISTER(Enemy);
 
 //using namespace viper;
 void Enemy::Update(float dt)
@@ -45,13 +47,13 @@ void Enemy::Update(float dt)
 	//}
 
 	// ROTATION
-	viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation)) * owner->speed;
+	viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation)) * speed;
 	//velocity += force * dt;
 	//GetComponent<viper::RigidBody>()->velocity += force * dt;
 	
 	auto rb = owner->GetComponent<viper::RigidBody>();
 	if (rb) {
-		rb->velocity += force * owner->dt;
+		rb->velocity += force * dt;
 	}
 
 	// WRAP POSITION
@@ -59,41 +61,41 @@ void Enemy::Update(float dt)
 	owner->transform.position.y = viper::math::wrap(owner->transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
 
 	// ENEMY ROCKETS
-	owner->fireTimer -= owner->dt;
-	if (owner->fireTimer <= 0 && playerSeen) {
-		owner->fireTimer = owner->fireTime;
+	fireTimer -= dt;
+	if (fireTimer <= 0 && playerSeen) {
+		fireTimer = fireTime;
 
-		std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
-		viper::Transform transform{ owner->transform.position,owner->transform.rotation , 2.0f };
-		//auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
-		auto rocket = std::make_unique<Actor>(transform);//, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
+		//std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
+		//viper::Transform transform{ owner->transform.position,owner->transform.rotation , 2.0f };
+		////auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
+		//auto rocket = std::make_unique<Actor>(transform);//, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
 
-		owner->rocket->speed = 500.0f;
-		owner->rocket->lifespan = 1.5f;
-		owner->rocket->name = "rocket";
-		owner->rocket->tag = "enemy";
+		///*rocket->speed = 500.0f;
+		//rocket->lifespan = 1.5f;
+		//rocket->name = "rocket";
+		//rocket->tag = "enemy";*/
 
-		auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-		spriteRenderer->textureName = "red_rocket.png";
+		//auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+		//spriteRenderer->textureName = "red_rocket.png";
 
-		owner->rocket->AddComponent(std::move(spriteRenderer));
+		//owner->rocket->AddComponent(std::move(spriteRenderer));
 
-		auto rb = std::make_unique<viper::RigidBody>();
-		//rb->damping = 0.5f;
-		owner->rocket->AddComponent(std::move(rb));
+		//auto rb = std::make_unique<viper::RigidBody>();
+		////rb->damping = 0.5f;
+		//owner->rocket->AddComponent(std::move(rb));
 
-		auto collider = std::make_unique<viper::CircleCollider2D>();
-		collider->radius = 10;
-		owner->rocket->AddComponent(std::move(collider));
+		//auto collider = std::make_unique<viper::CircleCollider2D>();
+		//collider->radius = 10;
+		//owner->rocket->AddComponent(std::move(collider));
 
-		owner->scene->AddActor(std::move(rocket));
+		//owner->scene->AddActor(std::move(rocket));
 	}
 	
-	// UPDATE PARENT
-	viper::Actor::Update(owner->dt);
+	//// UPDATE PARENT
+	//viper::Actor::Update(dt);
 }
 
-void Enemy::OnCollision(Actor* other)
+void Enemy::OnCollision(viper::Actor* other)
 {
 	if (owner->tag != other->tag) {
 		owner->destroyed = true;

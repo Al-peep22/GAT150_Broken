@@ -21,5 +21,5 @@ public:
 
 	void Update(float dt) override;
 
-	void OnCollision(class Actor* other);
+	void OnCollision(viper::Actor* other);
 };

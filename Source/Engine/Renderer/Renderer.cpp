@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <Engine.cpp>
 #include "Texture.h"
 #include "Core/Logger.h"
 

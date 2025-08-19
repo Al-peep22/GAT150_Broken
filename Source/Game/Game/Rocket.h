@@ -1,4 +1,5 @@
 #include "FrameWork/Component.h"
+#include "FrameWork/Actor.h"
 
 class Rocket : public viper::Component {
 public:
@@ -18,5 +19,5 @@ public:
 
 	void Update(float dt) override;
 
-	void OnCollision(class Actor* other);
+	void OnCollision(class viper::Actor* other);
 };
