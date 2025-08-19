@@ -16,6 +16,7 @@
 #include <Components/RigidBody.h>
 #include <Components/CircleCollider2D.h>
 #include "Audio/AudioClip.h"
+
 #include "Core/Factory.h"
 
 FACTORY_REGISTER(Player)
@@ -70,10 +71,11 @@ void Player::Update(float dt)
 		//	viper::GetEngine().GetAudio().PlaySound(*sound);
 		//}
 
-		//std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
+		std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 1, 1 });
 		//viper::Transform transform{ owner->transform.position,owner->transform.rotation , 2 };
 		////auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
 		//auto rocket = std::make_unique<viper::Actor>(transform);//, viper::Resources().Get<viper::Texture>("blue_rocket.png", viper::GetEngine().GetRenderer()));
+		//auto rocket = Factory::Instance().Create("Rocket");
 
 		//rocket->speed = 1500.0f;
 		//rocket->owner->lifespan = 1.5f;
@@ -81,15 +83,18 @@ void Player::Update(float dt)
 		//rocket->owner->tag = "player";
 
 		//auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+		//auto spriteRenderer = Factory::Instance().Create("SpriteRenderer");
 		//spriteRenderer->textureName = "blue_rocket.png";
 
 		//rocket->owner->AddComponent(std::move(spriteRenderer));
 
 		//auto rb = std::make_unique<viper::RigidBody>();
+		//auto rigidbody = Factory::Instance().Create("RigidBody");
 		////rb->damping = 0.5f;
 		//rocket->owner->AddComponent(std::move(rb));
 
 		//auto collider = std::make_unique<viper::CircleCollider2D>();
+		//auto collier = Factory::Instance().Create("CircleCollider2D");
 		//collider->radius = 10;
 		//rocket->owner->AddComponent(std::move(collider));
 
