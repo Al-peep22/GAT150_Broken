@@ -6,9 +6,10 @@
 #include "FrameWork/Object.h"
 #include <vector>
 #include "Component.h"
+#include "Core/Serializable.h"
 
 namespace viper {
-	class Actor : public Object{
+	class Actor : public Object {
 	public:
 		std::string name;
 		std::string tag;
@@ -33,13 +34,14 @@ namespace viper {
 		Actor(const viper::Transform& transform) :
 			transform{ transform } {}
 
+		void Read(const json::value_t& value) override;
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 		virtual void DrawT(class Renderer& renderer);
 
 		Transform& GetTransform() { return transform; }//Dont need not private anymore
 
-		virtual void OnCollision(Actor* other) = 0;
+		virtual void OnCollision(Actor* other) {}
 
 		/*float GetRadius();*/
 		float GetRadiusT();
@@ -57,6 +59,7 @@ namespace viper {
 		res_t<Texture> texture;
 		std::shared_ptr<class Mesh> Mesh;
 		
+
 	};
 
 	template<typename T>

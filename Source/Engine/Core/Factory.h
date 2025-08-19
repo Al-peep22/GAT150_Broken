@@ -25,7 +25,7 @@ namespace viper {
 
 	template <typename T = Object>
 	requires std::derived_from<T, Object>
-	class Creator {
+	class Creator : public CreatorBase {
 	public:
 		std::unique_ptr<Object> Create() override{
 			return std::make_unique<T>();

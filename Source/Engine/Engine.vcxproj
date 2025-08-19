@@ -218,8 +218,10 @@
     </ClCompile>
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FrameWork\Actor.cpp" />
+    <ClCompile Include="FrameWork\Object.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Mesh.cpp" />
     <ClCompile Include="Renderer\ParticleSystem.cpp" />
@@ -242,6 +244,7 @@
     <ClInclude Include="Core\Json.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="Core\Random.h" />
+    <ClInclude Include="Core\Serializable.h" />
     <ClInclude Include="Core\Singleton.h" />
     <ClInclude Include="Core\StringHelper.h" />
     <ClInclude Include="Core\Time.h" />

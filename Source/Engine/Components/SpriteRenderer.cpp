@@ -21,4 +21,9 @@ namespace viper {
 			owner->transform.rotation);
 		}
 	}
+	void SpriteRenderer::Read(const json::value_t& value)
+	{
+		Object::Read(value);
+		JSON_READ(value,textureName);
+	}
 }

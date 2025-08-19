@@ -38,6 +38,17 @@ namespace viper{
 			}
 		}
 	}
+
+	void Scene::Read(const json::value_t& value)
+	{
+		for (auto& actorValue : value["actors"].GetArray()) {
+			auto actor = Factory::Instance().Create<Actor>("Actor");
+			actor->Read(actorValue);
+
+			AddActor(std::move(actor));
+		}
+	}
+
 	void Scene::Draw(Renderer& renderer) {
 		for (auto& actor : actors) {
 			//actor->Draw(renderer);
@@ -56,4 +67,5 @@ namespace viper{
 	{
 		actors.clear();
 	}
+
 }

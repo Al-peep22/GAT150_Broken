@@ -1,14 +1,15 @@
 #pragma once
 #include "Components/RendererComponent.h"
+#include "Core/Serializable.h"
 
 namespace viper{
 	class SpriteRenderer : public RendererComponent {
 	public:
 		std::string textureName;
 	public:
-		SpriteRenderer() = default;
 		void Update(float dt) override;
 		void Draw(class Renderer& renderer) override;
-	private:
+	
+		void Read(const json::value_t& value) override;
 	};
 }
