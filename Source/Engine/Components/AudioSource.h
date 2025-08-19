@@ -8,5 +8,10 @@ namespace viper {
 
 	public:
 
+
+		// Inherited via Component
+		void Update(float dt) override;
+
+		void Play();
 	};
 }

@@ -167,7 +167,7 @@ void SpaceGame::SpawnEnemy()
 
         // spawn at random position (not on player)
 		viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f,500.0f);
-        viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 2};
+        viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 6};
         //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_Mesh);
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform);//, viper::Resources().Get<viper::Texture>("large_red_01.png", viper::GetEngine().GetRenderer()));
 

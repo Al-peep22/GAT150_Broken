@@ -17,6 +17,8 @@
 #include <Components/CircleCollider2D.h>
 #include "Audio/AudioClip.h"
 
+FACTORY_REGISTER(Player)
+
 using namespace viper;
 
 void Player::Update(float dt)

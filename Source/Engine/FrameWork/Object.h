@@ -8,6 +8,6 @@ namespace viper {
 		bool active{ true };
 	public:
 		Object() = default;
-		~Object() = default;
+		virtual ~Object() = default;
 	};
 }

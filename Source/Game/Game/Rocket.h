@@ -1,11 +1,11 @@
-#include "FrameWork/Actor.h"
+#include "FrameWork/Component.h"
 
-class Rocket : public viper::Actor {
+class Rocket : public viper::Component {
 public:
 	float speed = 200;
 
 	Rocket() = default;
-	Rocket(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
+	/*Rocket(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
 		Actor{ transform, Mesh } {
 	}
 	Rocket(const viper::Transform& transform, viper::res_t<viper::Texture> texture) :
@@ -14,9 +14,9 @@ public:
 
 	Rocket(const viper::Transform& transform) :
 		Actor{ transform } {
-	}
+	}*/
 
 	void Update(float dt) override;
 
-	void OnCollision(Actor* other) override;
+	void OnCollision(class Actor* other);
 };

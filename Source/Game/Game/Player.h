@@ -1,7 +1,7 @@
 #pragma once
-#include "FrameWork/Actor.h"
+#include "FrameWork/Component.h"
 
-class Player : public viper::Actor {
+class Player : public viper::Component {
 public:
 	float speed = 200;
 	float rotationRate = 180.0f;
@@ -9,7 +9,7 @@ public:
 	float fireTimer = 0.0f;
 
 	Player() = default;
-	Player(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
+	/*Player(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
 		Actor{ transform, Mesh } {
 	}
 	
@@ -18,10 +18,10 @@ public:
 	}
 
 	Player(const viper::Transform& transform) :
-		Actor{ transform} {
+		Actor{ transform} {*/
 	}
 
 	void Update(float dt) override;
 
-	void OnCollision(Actor* other) override;
+	void OnCollision(class Actor* other);
 };

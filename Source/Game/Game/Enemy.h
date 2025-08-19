@@ -1,13 +1,13 @@
-#include "FrameWork/Actor.h"
+#include "FrameWork/Component.h"
 
-class Enemy : public viper::Actor {
+class Enemy : public viper::Component {
 public:
 	float speed = 200;
 	float fireTimer = 0;
 	float fireTime = 0;
 
 	Enemy() = default;
-	Enemy(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
+	/*Enemy(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
 		Actor{ transform, Mesh } {
 	}
 	
@@ -17,9 +17,9 @@ public:
 
 	Enemy(const viper::Transform& transform) :
 		Actor{ transform} {
-	}
+	}*/
 
 	void Update(float dt) override;
 
-	void OnCollision(Actor* other) override;
+	void OnCollision(class Actor* other);
 };

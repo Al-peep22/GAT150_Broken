@@ -201,6 +201,7 @@
   <ItemGroup>
     <ClCompile Include="Audio\AudioClip.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Components\AudioSource.cpp" />
     <ClCompile Include="Components\CircleCollider2D.cpp" />
     <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Components\RigidBody.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="Components\RendererComponent.h" />
     <ClInclude Include="Components\RigidBody.h" />
     <ClInclude Include="Components\SpriteRenderer.h" />
+    <ClInclude Include="Core\Factory.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Json.h" />
     <ClInclude Include="Core\Logger.h" />

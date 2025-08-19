@@ -5,6 +5,9 @@
 #include "Core/Random.h"
 #include "Input/InputSystem.h"
 #include "Renderer/ParticleSystem.h"
+
+FACTORY_REGISTER(Rocket)
+
 using namespace viper;
 void Rocket::Update(float dt)
 {

@@ -2,6 +2,9 @@
 #include "CircleCollider2D.h"
 
 namespace viper {
+
+	FACTORY_REGISTER(CircleCollider2D)
+
 	void CircleCollider2D::Update(float dt)
 	{
 		//
