@@ -1,9 +1,14 @@
 #include "EngineCPH.h"
 #include "SpriteRenderer.h"
 #include "Renderer/Renderer.h"
+#include "Engine.h"
 namespace viper {
 
-	FACTORY_REGISTER(SpriteRenderer)
+	FACTORY_REGISTER(SpriteRenderer);
+
+	void SpriteRenderer::Start() {
+		texture = Resources().Get<Texture>(textureName, GetEngine().GetRenderer());
+	}
 
 	void SpriteRenderer::Update(float dt)
 	{
@@ -24,6 +29,7 @@ namespace viper {
 	void SpriteRenderer::Read(const json::value_t& value)
 	{
 		Object::Read(value);
-		JSON_READ(value,textureName);
+		//JSON_READ(value,textureName);
+		JSON_READ_NAME(value, "texture_name", textureName);
 	}
 }

@@ -13,6 +13,10 @@ namespace viper{
 			}
 		}
 
+		/*std::erase_if(_actors, [](Actor actor) {
+			return (actor->destroyed);
+		});*/
+
 		//remove destroyed actors
 		for (auto iter = actors.begin(); iter != actors.end(); ) {
 			if ((*iter)->destroyed) {
@@ -41,11 +45,23 @@ namespace viper{
 
 	void Scene::Read(const json::value_t& value)
 	{
-		for (auto& actorValue : value["actors"].GetArray()) {
-			auto actor = Factory::Instance().Create<Actor>("Actor");
-			actor->Read(actorValue);
+		if (JSON_HAS(value, prototypes)) {
+			for (auto& actorValue : JSON_GET(value, prototypes).GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
 
-			AddActor(std::move(actor));
+				std::string name = actor->name;
+				Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+			}
+		}
+
+		if (JSON_HAS(value, actors)) {
+			for (auto& actorValue : JSON_GET(value, actors).GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
+
+				AddActor(std::move(actor), false);
+			}
 		}
 	}
 
@@ -57,15 +73,41 @@ namespace viper{
 			}
 		}
 	}
-	void Scene::AddActor(std::unique_ptr<Actor> actor)
+	void Scene::AddActor(std::unique_ptr<Actor> actor, bool start)
 	{
 		actor->scene = this; // Set the scene for the actor
+		if (start) actor->Start();
 		actors.push_back(std::move(actor));
 	}
 
-	void Scene::RemoveAllActors() 
+	void Scene::RemoveAllActors(bool force) 
 	{
-		actors.clear();
+		//actors.clear();
+		for (auto iter = actors.begin(); iter != actors.end(); ) {
+			if (!(*iter)->persistent || force) {
+				iter = actors.erase(iter);
+			}
+			else { iter++; }
+		}
+	}
+
+	bool Scene::Load(const std::string& sceneName) {
+		// Load json
+		json::document_t document;
+		if (!json::Load(sceneName, document)) {
+			Logger::Error("Could not load scene {}", sceneName);
+			return false;
+		}
+
+		// Create scene
+		Read(document);
+
+		// Start actors
+		for (auto& actor : _actors) {
+			actor->Start();
+		}
+
+		return true;
 	}
 
 }

@@ -5,7 +5,32 @@
 
 
 namespace viper {
-FACTORY_REGISTER(Actor)
+	FACTORY_REGISTER(Actor);
+
+	Actor::Actor(const Actor& other) : 
+		Object{ other },
+		tag{ other.tag },
+		lifespan{ other.lifespan },
+		transform{ other.transform }
+
+	{
+		for (auto& component : other.components) {
+			auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+			components.push_back(std::move(clone));
+		}
+	}
+
+	void Actor::Start() {
+		for (auto& component : _components) {
+			component->Start();
+		}
+	}
+
+	void Actor::Destroyed() {
+		for (auto& component : _components) {
+			component->Destroyed();
+		}
+	}
 
 	void viper::Actor::Update(float dt)
 	{
@@ -61,6 +86,14 @@ FACTORY_REGISTER(Actor)
 		return 50.0f;//(texture) ? (texture->GetSize().Length() * 0.5f) * transform.scale * 0.3f : 0.0f;
 	}
 
+	void Actor::OnCollision(Actor* other) {
+		auto collidables = GetComponents<ICollidable>();
+
+		for (auto& collidable : collidables) {
+			collidable->OnCollision(other);
+		}
+	}
+
 	void Actor::AddComponent(std::unique_ptr<Component> component)
 	{
 		component->owner = this; // Set the owner of the component to this actor
@@ -73,8 +106,23 @@ FACTORY_REGISTER(Actor)
 
 		JSON_READ(value,tag);
 		JSON_READ(value,lifespan);
+		JSON_READ(value, persistent);
+
 
 		if (JSON_HAS(value, transform)) transform.Read(JSON_GET(value, transform));
+
+		if (JSON_HAS(value, components)) {
+			for (auto& componentValue : JSON_GET(value, components).GetArray()) {
+
+				std::string type;
+				JSON_READ(componentValue, type);
+
+				auto component = Factory::Instance().Create<Component>(type);
+				component->Read(componentValue);
+
+				AddComponent(std::move(component));
+			}
+		}
 	}
 
 }

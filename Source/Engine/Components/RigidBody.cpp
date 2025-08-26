@@ -12,4 +12,11 @@ namespace viper {
 	void RigidBody::Draw(Renderer& renderer)
 	{
 	}
+	void RigidBody::Read(const json::value_t& value)
+	{
+		Object::Read(value);
+
+		JSON_READ(value, damping);
+		JSON_READ(value, velocity);
+	}
 }

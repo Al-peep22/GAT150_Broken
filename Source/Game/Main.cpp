@@ -67,6 +67,7 @@ int main(int argc, char* argv[]) {
     bool quit = false;
 
 	// INITIALIZE SOUNDS
+    /*    
     GetEngine().GetAudio().AddSound("bass.wav", "bass");
     GetEngine().GetAudio().AddSound("snare.wav", "snare");
     GetEngine().GetAudio().AddSound("open-hat.wav", "openhat");
@@ -76,6 +77,7 @@ int main(int argc, char* argv[]) {
     GetEngine().GetAudio().AddSound("arcade-fx-288597.mp3", "death");
     GetEngine().GetAudio().AddSound("Yoshi's Island OST - Athletic.mp3", "1music");
     GetEngine().GetAudio().AddSound("game-music-alien-71795.mp3", "music");
+    */
 
     // CREATE TEXTURE
 	auto squidwardTexture = viper::Resources().Get<Texture>("sexy-squidward.png", GetEngine().GetRenderer());

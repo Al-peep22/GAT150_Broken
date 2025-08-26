@@ -25,15 +25,23 @@
 //#include <Instance.h>
 
 #include "Core/Factory.h"
+#include "Event/Event.h"
+#include "Instance.h"
+#include "Event/EventManager.h"
 
 using namespace viper;
 
 bool SpaceGame::Initialize() {
+
+    OBSERVER_ADD(player_dead);
+    OBSERVER_ADD(add_points);
+
+    viper::EventManager::Instance().AddObserver("player_dead",*this);
+    viper::EventManager::Instance().AddObserver("add_points",*this);
+
     scene = std::make_unique<viper::Scene>(this);
 
-    viper::json::document_t document;
-    viper::json::Load("scene.json",document);
-    scene->Read(document);
+    scene->Load("scene.json");
 
 	titleText = std::make_unique<Text>(Resources().GetWithID<Font>("title_font",GameData::gameFont, 128.0f));
     scoreText = std::make_unique<viper::Text>(viper::Resources().GetWithID<viper::Font>("ui_font",GameData::gameFont, 48.0f));
@@ -62,10 +70,15 @@ void SpaceGame::Update(float dt) {
     case SpaceGame::GameState::StartRound:
     {
 
-        viper::GetEngine().GetAudio().PlaySound("music");
+        //viper::GetEngine().GetAudio().PlaySound("music");
 
         scene->RemoveAllActors();
-  //      // CREATE PLAYER
+
+        // CREATE PLAYER
+		auto player = viper::Factory::Instance().Create<viper::Actor>("Player");
+		scene->AddActor(std::move(player));
+        /*
+        
         std::shared_ptr<viper::Mesh> ship_Mesh = std::make_shared<viper::Mesh>(GameData::ship_points, viper::vec3{ 0.37f, 1, 0.16f });
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f , viper::GetEngine().GetRenderer().GetHeight() * 0.5f}, 0, 2 };
   //      //std::unique_ptr<Player> player = std::make_unique<Player>(transform, ship_Mesh);
@@ -96,7 +109,7 @@ void SpaceGame::Update(float dt) {
 
         //scene->AddActor(std::move(player));
 
-
+        */
 
         gameState = GameState::Game;
         break;
@@ -134,6 +147,7 @@ void SpaceGame::Update(float dt) {
 }
 
 void SpaceGame::Draw(viper::Renderer& renderer) {
+    scene->Draw(renderer);
 
     // CREATE TITLE TEXT
     if (gameState == GameState::Title) {
@@ -156,7 +170,6 @@ void SpaceGame::Draw(viper::Renderer& renderer) {
         livesText->Draw(renderer, (float)renderer.GetWidth() - 300, 20.0f);
     }
 
-    scene->Draw(renderer);
 
 	viper::GetEngine().GetParticleSystem().Draw(renderer);
 
@@ -173,49 +186,70 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnEnemy()
 {
-	Player* player = scene->GetActorByName<Player>("player");
+	viper::Actor* player = scene->GetActorByName<Actor>("player");
     if (player) {
+        viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
+        viper::Transform transform{ position, viper::random::getReal(0.0f,360.0f), 2.0f };
 
-        std::shared_ptr<viper::Mesh> enemy_Mesh = std::make_shared<viper::Mesh>(GameData::enemy_points, viper::vec3{ 1, 0.18f, 0.18f });
+        /*
 
-        // spawn at random position (not on player)
-		//viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f,500.0f);
-        //viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 6};
-        //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_Mesh);
-        //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform);//, viper::Resources().Get<viper::Texture>("large_red_01.png", viper::GetEngine().GetRenderer()));
-        auto enemy = Factory::Instance().Create("Enemy");
-        
+        Player* player = scene->GetActorByName<Player>("player");
+        if (player) {
 
-        //enemy->speed = (viper::random::getReal() * 100) + 100;
-        ////enemy->damping = 0.5f;
-        //enemy->fireTime = 1;
-        //enemy->fireTimer = 1;
-        //enemy->name = "enemy";
-        //enemy->tag = "enemy";
+            std::shared_ptr<viper::Mesh> enemy_Mesh = std::make_shared<viper::Mesh>(GameData::enemy_points, viper::vec3{ 1, 0.18f, 0.18f });
 
-        //auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        auto spriteRenderer = Factory::Instance().Create("SpriteRenderer");
-        //spriteRenderer->textureName = "large_red_01.png";
+            // spawn at random position (not on player)
+            //viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f,500.0f);
+            //viper::Transform enemy_transform{ position, viper::random::getReal(0.0f,360.0f), 6};
+            //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform, enemy_Mesh);
+            //std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemy_transform);//, viper::Resources().Get<viper::Texture>("large_red_01.png", viper::GetEngine().GetRenderer()));
+            auto enemy = Factory::Instance().Create("Enemy");
 
-        //enemy->AddComponent(std::move(spriteRenderer));
-		//auto meshRenderer = std::make_unique<viper::MeshRenderer>();
-        auto meshRenderer = Factory::Instance().Create("MeshRenderer");
-		//meshRenderer->meshName = "Meshes/enemy.txt";
-		//enemy->AddComponent(std::move(meshRenderer));
 
-  //      auto rb = std::make_unique<viper::RigidBody>();
-        auto rigidbody = Factory::Instance().Create("RigidBody");
-  //      rb->damping = 0.5f;
-  //      enemy->AddComponent(std::move(rb));
+            //enemy->speed = (viper::random::getReal() * 100) + 100;
+            ////enemy->damping = 0.5f;
+            //enemy->fireTime = 1;
+            //enemy->fireTimer = 1;
+            //enemy->name = "enemy";
+            //enemy->tag = "enemy";
 
-  //      //auto collider = std::make_unique<viper::CircleCollider2D>();
-        auto collider = Factory::Instance().Create("CircleCollider2D");
-  //      collider->radius = 60.0f;
-  //      enemy->AddComponent(std::move(collider));
+            //auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+            auto spriteRenderer = Factory::Instance().Create("SpriteRenderer");
+            //spriteRenderer->textureName = "large_red_01.png";
 
-  //      scene->AddActor(std::move(enemy));
+            //enemy->AddComponent(std::move(spriteRenderer));
+            //auto meshRenderer = std::make_unique<viper::MeshRenderer>();
+            auto meshRenderer = Factory::Instance().Create("MeshRenderer");
+            //meshRenderer->meshName = "Meshes/enemy.txt";
+            //enemy->AddComponent(std::move(meshRenderer));
 
+      //      auto rb = std::make_unique<viper::RigidBody>();
+            auto rigidbody = Factory::Instance().Create("RigidBody");
+      //      rb->damping = 0.5f;
+      //      enemy->AddComponent(std::move(rb));
+
+      //      //auto collider = std::make_unique<viper::CircleCollider2D>();
+            auto collider = Factory::Instance().Create("CircleCollider2D");
+      //      collider->radius = 60.0f;
+      //      enemy->AddComponent(std::move(collider));
+
+      //      scene->AddActor(std::move(enemy));
+
+        }
+
+        */
+        auto enemy = viper::Instantiate("enemy", transform);
+        //enemy->GetComponent<viper::SpriteRenderer>()->textureName = "large_red_01.png";
+        scene->AddActor(std::move(enemy));
     }
+}
+
+void SpaceGame::OnNotify(const Event& event)
+{
+    if (viper::equalsIgnoreCase(event.id, "player_dead")) { OnPlayerDead(); }
+    if (viper::equalsIgnoreCase(event.id, "add_points")) { AddPoints(std::get<int>(event.data)); }
+    //switch (viper::toLower(event.id)) {}
+    std::cout << event.id << std::endl;
 }
 
 void SpaceGame::Shutdown() {

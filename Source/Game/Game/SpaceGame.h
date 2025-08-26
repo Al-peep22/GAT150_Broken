@@ -3,8 +3,9 @@
 #include <Renderer/Font.h>
 #include "Renderer/Text.h"
 #include "Renderer/Renderer.h"
+#include "Event/Observer.h"
 
-class SpaceGame : public viper::Game {
+class SpaceGame : public viper::Game, public viper::IObserver {
 public:
 	enum class GameState {
 		Initialize,
@@ -24,6 +25,7 @@ public:
 	void Draw(class viper::Renderer& renderer) override;
 
 	void OnPlayerDead();
+	void OnNotify(const Event& event) override;
 
 private:
 	void SpawnEnemy();
@@ -41,4 +43,5 @@ private:
 	std::unique_ptr<viper::Text> titleText;
 	std::unique_ptr<viper::Text> scoreText;
 	std::unique_ptr<viper::Text> livesText;
+
 };

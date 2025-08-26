@@ -9,9 +9,12 @@ namespace viper {
 		CircleCollider2D() = default;
 
 	private:
+		CLASS_PROTOTYPE(CircleCollider2D);
 
 		// Inherited via ColliderComponent
 		void Update(float dt) override;
 		bool CheckCollision(ColliderComponent& other) override;
+
+		void Read(const json::value_t& value) override;
 	};
 }

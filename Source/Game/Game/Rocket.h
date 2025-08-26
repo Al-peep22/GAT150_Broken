@@ -1,7 +1,8 @@
 #include "FrameWork/Component.h"
 #include "FrameWork/Actor.h"
+#include "Physics/Collidable.h"
 
-class Rocket : public viper::Component {
+class Rocket : public viper::Component, public viper::ICollidable {
 public:
 	float speed = 200;
 
@@ -16,8 +17,11 @@ public:
 	Rocket(const viper::Transform& transform) :
 		Actor{ transform } {
 	}*/
+	CLASS_PROTOTYPE(Rocket);
 
 	void Update(float dt) override;
 
-	void OnCollision(class viper::Actor* other);
+	void OnCollision(class viper::Actor* other) override;
+
+	void Read(const viper::json::value_t& value) override;
 };

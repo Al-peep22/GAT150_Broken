@@ -27,6 +27,10 @@
 #include "Core/Time.h"
 #include "Core/Json.h"
 
+//physics
+#include "Physics/Physics.h"
+#include "Physics/Collidable.h"
+
 //math
 #include "Math/Math.h"
 #include "Math/Transform.h"
@@ -41,3 +45,8 @@
 //resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
+
+//event manager
+#include "Event/Event.h"
+#include "Event/EventManager.h"
+#include "Event/Observer.h"

@@ -26,6 +26,8 @@ namespace viper {
     void Engine::Shutdown()
     {
 		Resources().Clear();
+		Factory::Instance().RemoveAll();
+		EventManager::Instance().RemoveAll();
 		this->particleSystem->ShutDown();
         this->renderer->ShutDown();
         this->input->ShutDown();

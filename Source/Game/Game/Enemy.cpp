@@ -17,8 +17,16 @@
 #include "FrameWork/Actor.h"
 
 #include "Core/Factory.h"
+#include "Event/EventManager.h"
 
 FACTORY_REGISTER(Enemy);
+
+void Enemy::Start() {
+	OBSERVER_ADD(player_dead);
+	viper::EventManager::Instance().AddObserver("player_dead", *this);
+	rigidBody = owner->GetComponent<viper::RigidBody>();
+	fireTimer = fireTime;
+}
 
 //using namespace viper;
 void Enemy::Update(float dt)
@@ -52,9 +60,8 @@ void Enemy::Update(float dt)
 	//velocity += force * dt;
 	//GetComponent<viper::RigidBody>()->velocity += force * dt;
 	
-	auto rb = owner->GetComponent<viper::RigidBody>();
-	if (rb) {
-		rb->velocity += force * dt;
+	if (rigidBody) {
+		rigidBody->velocity += force * dt;
 	}
 
 	// WRAP POSITION
@@ -68,43 +75,48 @@ void Enemy::Update(float dt)
 
 		std::shared_ptr<viper::Mesh> rocket_Mesh = std::make_shared<viper::Mesh>(GameData::rocket_points, viper::vec3{ 1, 0, 0 });
 		viper::Transform transform{ owner->transform.position,owner->transform.rotation , 2.0f };
-		////auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
+
+		// CREATE ROCKET
+		/*
+		//auto rocket = std::make_unique<Rocket>(transform, rocket_Mesh);
+		auto rocket = std::make_unique<Actor>(transform);//, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
+
+		rocket->speed = 500.0f;
+		rocket->lifespan = 1.5f;
+		rocket->name = "rocket";
+		rocket->tag = "enemy";
+
+		auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+		spriteRenderer->textureName = "red_rocket.png";
+
+		owner->rocket->AddComponent(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<viper::RigidBody>();
+		//rb->damping = 0.5f;
+		owner->rocket->AddComponent(std::move(rb));
+
+		auto collider = std::make_unique<viper::CircleCollider2D>();
+		collider->radius = 10;
+		owner->rocket->AddComponent(std::move(collider));
+
+		owner->scene->AddActor(std::move(rocket));
+		*/
+
+		// CREATE ROCKET USING FACTORY
 		//auto rocket = Factory::Instance().Create("Rocket");
-		//auto rocket = std::make_unique<Actor>(transform);//, viper::Resources().Get<viper::Texture>("red_rocket.png", viper::GetEngine().GetRenderer()));
-
-		///*rocket->speed = 500.0f;
-		//rocket->lifespan = 1.5f;
-		//rocket->name = "rocket";
-		//rocket->tag = "enemy";*/
-
-		//auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
 		//auto spriteRenderer = Factory::Instance().Create("SpriteRenderer");
-		//spriteRenderer->textureName = "red_rocket.png";
-
-		//owner->rocket->AddComponent(std::move(spriteRenderer));
-
-		//auto rb = std::make_unique<viper::RigidBody>();
 		//auto rigidbody = Factory::Instance().Create("RigidBody");
-		////rb->damping = 0.5f;
-		//owner->rocket->AddComponent(std::move(rb));
-
-		//auto collider = std::make_unique<viper::CircleCollider2D>();
-		//auto collider = Factory::Instance().Create("CircleCollider2D");
-		//collider->radius = 10;
-		//owner->rocket->AddComponent(std::move(collider));
-
-		//owner->scene->AddActor(std::move(rocket));
+		//auto collider = Factory::Instance().Create("CircleCollider2D");		
 	}
-	
-	//// UPDATE PARENT
-	//viper::Actor::Update(dt);
 }
 
 void Enemy::OnCollision(viper::Actor* other)
 {
 	if (owner->tag != other->tag) {
 		owner->destroyed = true;
-		owner->scene->GetGame()->AddPoints(100);
+		//viper::EventManager::Instance().Notify({"add_points",100});
+		EVENT_NOTIFY(add_points, 100);
+		//owner->scene->GetGame()->AddPoints(100);
 		for (int i = 0; i < 100; i++) {
 
 			// CREATE PARTICAL EXPLOSION
@@ -117,4 +129,9 @@ void Enemy::OnCollision(viper::Actor* other)
 			viper::GetEngine().GetParticleSystem().AddParticle(particle);
 		}
 	}
+}
+
+void Enemy::OnNotify(const Event& event)
+{
+	if (viper::equalsIgnoreCase(event.id, "player_dead")) { owner->destroyed = true; }
 }

@@ -11,15 +11,14 @@
 namespace viper {
 	class Actor : public Object {
 	public:
-		std::string name;
 		std::string tag;
-
-		bool destroyed{ false };
+		std::string name;
 		float lifespan{ 0 };
-	
-
-		Transform transform;
+		bool persistent{ false };
+		
+		bool destroyed{ false };
 		class Scene* scene{ nullptr };
+		Transform transform;
 
 	public:
 		Actor() = default;
@@ -34,14 +33,22 @@ namespace viper {
 		Actor(const viper::Transform& transform) :
 			transform{ transform } {}
 
+		Actor(const Actor& other);
+
+		CLASS_PROTOTYPE(Actor);
+
 		void Read(const json::value_t& value) override;
+		
+		virtual void Start();
+		virtual void Destroyed();
+		
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 		virtual void DrawT(class Renderer& renderer);
 
 		Transform& GetTransform() { return transform; }//Dont need not private anymore
 
-		virtual void OnCollision(Actor* other) {}
+		virtual void OnCollision(Actor* other);
 
 		/*float GetRadius();*/
 		float GetRadiusT();

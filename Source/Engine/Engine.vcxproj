@@ -216,12 +216,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Event\EventManager.cpp" />
+    <ClCompile Include="Event\Observer.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FrameWork\Actor.cpp" />
     <ClCompile Include="FrameWork\Object.cpp" />
     <ClCompile Include="FrameWork\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
+    <ClCompile Include="Physics\Physics.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Mesh.cpp" />
     <ClCompile Include="Renderer\ParticleSystem.cpp" />
@@ -251,6 +254,9 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineCPH.h" />
     <ClInclude Include="EngineMinimal.h" />
+    <ClInclude Include="Event\Event.h" />
+    <ClInclude Include="Event\EventManager.h" />
+    <ClInclude Include="Event\Observer.h" />
     <ClInclude Include="FrameWork\Actor.h" />
     <ClInclude Include="FrameWork\Component.h" />
     <ClInclude Include="FrameWork\Game.h" />
@@ -261,6 +267,8 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Physics\Collidable.h" />
+    <ClInclude Include="Physics\Physics.h" />
     <ClInclude Include="Renderer\Font.h" />
     <ClInclude Include="Renderer\Image.h" />
     <ClInclude Include="Renderer\Mesh.h" />

@@ -23,4 +23,11 @@ namespace viper {
 		}
 		return false;
 	}
+
+	void CircleCollider2D::Read(const json::value_t& value)
+	{
+		Object::Read(value);
+		//JSON_READ(value,textureName);
+		JSON_READ(value, radius);
+	}
 }
