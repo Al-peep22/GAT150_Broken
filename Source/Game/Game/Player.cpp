@@ -16,6 +16,8 @@
 #include <Components/RigidBody.h>
 #include <Components/CircleCollider2D.h>
 #include "Audio/AudioClip.h"
+#include "FrameWork/Actor.h"
+
 
 #include "Core/Factory.h"
 #include <Event/EventManager.h>
