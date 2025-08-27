@@ -17,7 +17,7 @@
                 },
                 {
                     "type": "SpriteRenderer",
-                    "texture_Name": "Textures/blue_01.png"
+                    "texture_Name": "Textures/metalic_06.png"
                 },
                 {
                     "type": "RigidBody",
@@ -122,7 +122,7 @@
             "components": [
                 {
                     "type": "SpriteRenderer",
-                    "texture_Name": "Textures/sexy-squidward.png"
+                    "texture_Name": "Textures/space_background.jpeg"
                 }
             ]
         }
