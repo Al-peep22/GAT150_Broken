@@ -49,6 +49,7 @@ namespace viper {
             return false;
         }
 
+        SDL_SetRenderVSync(renderer, 1);
         SDL_SetRenderLogicalPresentation(renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
         return true;

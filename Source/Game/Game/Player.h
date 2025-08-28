@@ -11,7 +11,6 @@ public:
 	float fireTimer = 0.0f;
 
 	viper::RigidBody* rigidBody{ nullptr };
-
 	Player() = default;
 	/*Player(const viper::Transform& transform, std::shared_ptr<viper::Mesh> Mesh) :
 		Actor{ transform, Mesh } {
@@ -25,6 +24,9 @@ public:
 		Actor{ transform} {*/
 
 	CLASS_PROTOTYPE(Player);
+
+	void Start() override;
+
 	void Update(float dt) override;
 
 	void OnCollision(viper::Actor* other) override;

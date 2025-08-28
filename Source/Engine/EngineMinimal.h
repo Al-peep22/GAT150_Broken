@@ -30,6 +30,8 @@
 //physics
 #include "Physics/Physics.h"
 #include "Physics/Collidable.h"
+#include "../../box2d/include/box2d/box2d.h"
+#include "Physics/PhysicsBody.h"
 
 //math
 #include "Math/Math.h"

@@ -61,9 +61,9 @@ namespace viper {
 			requires std::derived_from<T, Object>
 		std::unique_ptr<T> Create(const std::string& name);
 
-		void RemoveAll() { _registry.clear(); }
+		void RemoveAll() { registry.clear(); }
 	private:
-		std::map<std::string, std::unique_ptr<CreatorBase>> _registry;
+		std::map<std::string, std::unique_ptr<CreatorBase>> registry;
 	};
 
 
@@ -74,7 +74,7 @@ namespace viper {
 		std::string key = toLower(name);
 
 		// Add creator to registry
-		_registry[key] = std::make_unique<Creator<T>>();
+		registry[key] = std::make_unique<Creator<T>>();
 
 		Logger::Info("{} added to factory.", name);
 	}
@@ -86,7 +86,7 @@ namespace viper {
 		// Make case-insensitive (lowercase)
 		std::string key = toLower(name);
 		// Add prototype creator to registry
-		_registry[key] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
+		registry[key] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
 		Logger::Info("{} prototype added to factory.", name);
 	}
 
@@ -97,8 +97,8 @@ namespace viper {
 		std::string key = toLower(name);
 
 		// Look for creator in registry
-		auto it = _registry.find(key);
-		if (it != _registry.end()) {
+		auto it = registry.find(key);
+		if (it != registry.end()) {
 			// Found creator, create object
 			auto object = it->second->Create();
 			T* derived = dynamic_cast<T*>(object.get());

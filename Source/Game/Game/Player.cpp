@@ -25,6 +25,10 @@
 FACTORY_REGISTER(Player)
 
 
+void Player::Start()
+{
+}
+
 void Player::Update(float dt)
 {
 	//// CREATE PARTICAL EXPLOSION
@@ -41,6 +45,8 @@ void Player::Update(float dt)
 	if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -1;
 	if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +1;
 
+	rigidBody->ApplyTorque(rotate * rotationRate);
+
 	//owner->transform.rotation += (rotate * owner->rotationRate) * owner->dt;
 
 	//// THRUST
@@ -51,10 +57,8 @@ void Player::Update(float dt)
 	//// DIRECTION AND VELOCITY
 	viper::vec2 direction{1,0};
 	viper::vec2 force = direction.Rotate(viper::math::degToRad(owner->transform.rotation))*thrust*speed;
-	auto rb = owner->GetComponent<viper::RigidBody>();
-	if (rb) {
-		rb->velocity += force * dt;
-	}
+	
+	rigidBody->ApplyForce(force);
 	
 
 	// WRAP POSITION

@@ -18,7 +18,7 @@ void Rocket::Update(float dt)
 	//velocity = force;
 	auto* rb = owner->GetComponent<viper::RigidBody>();
 	if (rb) {
-		rb->velocity = force;
+		rb->SetVelocity(force);
 	}
 
 	// WRAP POSITION

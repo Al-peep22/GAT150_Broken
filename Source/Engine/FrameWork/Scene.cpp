@@ -28,6 +28,7 @@ namespace viper{
 		//check for collisions
 		for (auto& actorA : actors) {
 			for (auto& actorB : actors) {
+
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
 				
 				auto colliderA = actorA->GetComponent<ColliderComponent>();
