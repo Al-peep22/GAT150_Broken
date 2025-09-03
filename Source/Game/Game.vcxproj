@@ -199,6 +199,9 @@
     <ClCompile Include="Game\Rocket.cpp" />
     <ClCompile Include="Game\SpaceGame.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Platformer\EnemyController.cpp" />
+    <ClCompile Include="Platformer\PlatformerGame.cpp" />
+    <ClCompile Include="Platformer\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -212,12 +215,18 @@
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Rocket.h" />
     <ClInclude Include="Game\SpaceGame.h" />
+    <ClInclude Include="Platformer\EnemyController.h" />
+    <ClInclude Include="Platformer\PlatformerGame.h" />
+    <ClInclude Include="Platformer\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Build\Assets\Meshes\enemy.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Build\Assets\Platformer\Scenes\level.json" />
+    <None Include="..\..\Build\Assets\Platformer\Tilemaps\tilemap.json" />
     <None Include="..\..\Build\Assets\scene.json" />
+    <None Include="Platformer\Scenes\prototypes.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

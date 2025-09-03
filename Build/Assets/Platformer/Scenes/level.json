@@ -1,0 +1,102 @@
+{
+    "actors": [
+        {
+            "name": "sprite",
+            "tag": "background",
+            "persistent": true,
+            "transform": {
+                "position": [
+                    640,
+                    512
+                ],
+                "rotation": 0,
+                "scale": 5
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "texture_name": "textures/moon_sky.png"
+                }
+            ]
+        },
+        {
+            "persistent": true,
+            "transform": {
+                "position": [
+                    0,
+                    0
+                ],
+                "rotation": 0,
+                "scale": 4
+            },
+            "components": [
+                {
+                    "type": "TilemapRenderer",
+                    "tilemap_name": "tilemaps/tilemap.json"
+                }
+            ]
+        },
+        {
+            "tag": "trees",
+            "persistent": true,
+            "transform": {
+                "position": [
+                    460,
+                    640
+                ],
+                "rotation": 0,
+                "scale": 0.2
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "texture_name": "textures/Trees.png"
+                }
+            ]
+        },
+        {
+            "tag": "ground",
+            "persistent": true,
+            "transform": {
+                "position": [
+                    640,
+                    900
+                ],
+                "rotation": 0,
+                "scale": 0.2
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "texture_name": "textures/platform.png"
+                },
+                {
+                    "type": "RigidBody",
+                    "isDynamic": false,
+                    "scale": [ 0.8, 0.5 ]
+                }
+            ]
+        },
+        {
+            "tag": "crate",
+            "persistent": true,
+            "transform": {
+                "position": [
+                    640,
+                    700
+                ],
+                "rotation": 0,
+                "scale": 1
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer",
+                    "texture_name": "textures/crate.png"
+                },
+                {
+                    "type": "RigidBody"
+                }
+            ]
+        }
+    ]
+}

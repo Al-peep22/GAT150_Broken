@@ -7,6 +7,7 @@
 #include "Components/MeshRenderer.h"
 #include "Components/RigidBody.h"
 #include "Components/RendererComponent.h"
+#include "TilemapRenderer.h"
 
 
 // audio
@@ -23,3 +24,4 @@
 #include "Renderer/Font.h"
 #include "Renderer/Texture.h"
 #include "Renderer/Text.h"
+#include "Renderer/Tilemap.h"

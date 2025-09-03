@@ -21,13 +21,13 @@ namespace viper {
 	}
 
 	void Actor::Start() {
-		for (auto& component : _components) {
+		for (auto& component : components) {
 			component->Start();
 		}
 	}
 
 	void Actor::Destroyed() {
-		for (auto& component : _components) {
+		for (auto& component : components) {
 			component->Destroyed();
 		}
 	}

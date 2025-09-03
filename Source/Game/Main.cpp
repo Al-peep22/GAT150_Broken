@@ -26,6 +26,7 @@
 #include "Resources/ResourceManager.h"
 #include "Renderer/Texture.h"
 #include "Core/Json.h"
+#include "Platformer/PlatformerGame.h"
 
 #include "../../rapidjson/include/rapidjson/istreamwrapper.h"
 #include "../../rapidjson/include/rapidjson/document.h"
@@ -42,16 +43,16 @@ int main(int argc, char* argv[]) {
     viper::Logger::SetEnabledLevels(viper::LogLevel::Error);
 
 	// SET DIRRECTORY
-    viper::file::SetCurrentDirectory("Assets");
+    viper::file::SetCurrentDirectory("Assets/Platformer");
 
 	// CHECK DIRRECTORY
-    //Logger::Info("current directory{}", viper::file::GetCurrentDirectory());
+    Logger::Info("current directory{}", viper::file::GetCurrentDirectory());
     
 	// INITIALIZE ENGINE
     GetEngine().Initialize();
 
     // Initialize Game
-    std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
+    std::unique_ptr<Game> game = std::make_unique<PlatformerGame>();
     game->Initialize();
 
     //// FONT CREATION

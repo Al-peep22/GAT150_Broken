@@ -28,6 +28,8 @@ namespace viper {
 		void DrawTexture(Texture& texture, float x, float y);
 		void DrawTexture(Texture& texture, float x, float y,float scale,float angle);
 
+		void DrawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
+
 	private:
 		friend class Text;
 

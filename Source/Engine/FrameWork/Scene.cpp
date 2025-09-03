@@ -104,7 +104,7 @@ namespace viper{
 		Read(document);
 
 		// Start actors
-		for (auto& actor : _actors) {
+		for (auto& actor : actors) {
 			actor->Start();
 		}
 

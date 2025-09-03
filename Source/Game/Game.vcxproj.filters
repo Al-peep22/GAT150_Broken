@@ -11,6 +11,15 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{59825a7c-6e2b-43f5-8da4-0e777551cc7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Platformer">
+      <UniqueIdentifier>{7fddabd1-e46e-4815-9d51-716f9f8a09bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Platformer\Scenes">
+      <UniqueIdentifier>{ecde0eab-249e-42ce-904b-1d0a61dc2e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Platformer\Tilemaps">
+      <UniqueIdentifier>{2c694913-1456-4d74-8439-634ebeec4fbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -34,6 +43,15 @@
     <ClCompile Include="GameCPH.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Platformer\PlayerController.cpp">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer\PlatformerGame.cpp">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer\EnemyController.cpp">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Player.h">
@@ -54,6 +72,15 @@
     <ClInclude Include="GameCPH.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Platformer\PlayerController.h">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\PlatformerGame.h">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\EnemyController.h">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Build\Assets\Meshes\enemy.txt">
@@ -63,6 +90,15 @@
   <ItemGroup>
     <None Include="..\..\Build\Assets\scene.json">
       <Filter>Assets</Filter>
+    </None>
+    <None Include="Platformer\Scenes\prototypes.json">
+      <Filter>Source\Game\Platformer\Scenes</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Platformer\Tilemaps\tilemap.json">
+      <Filter>Source\Game\Platformer\Tilemaps</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Platformer\Scenes\level.json">
+      <Filter>Source\Game\Platformer\Tilemaps</Filter>
     </None>
   </ItemGroup>
 </Project>
