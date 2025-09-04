@@ -69,6 +69,9 @@ void PlatformerGame::Shutdown() {
 void PlatformerGame::SpawnEnemy() {
     auto enemy = viper::Instantiate("enemy");
     scene->AddActor(std::move(enemy));
+
+    auto bat = viper::Instantiate("bat");
+    scene->AddActor(std::move(bat));
 }
 
 void PlatformerGame::SpawnPlayer() {

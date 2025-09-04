@@ -1,5 +1,6 @@
 #pragma once
 #include "../../box2d/include/box2d/box2d.h"
+#include "Math/Transform.h"
 namespace viper {
 	class PhysicsBody {
 	public:
@@ -39,6 +40,7 @@ namespace viper {
 		void ApplyTorque(float radians);
 
 		void SetVelocity(const vec2& velocity);
+		vec2 GetVelocity();
 	private:
 		b2BodyId bodyId {/*Something*/};
 	};

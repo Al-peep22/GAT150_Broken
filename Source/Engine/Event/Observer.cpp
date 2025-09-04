@@ -2,8 +2,7 @@
 #include "Event/EventManager.h"
 
 namespace viper {
-	viper::IObserver::~IObserver() {
-		//EventManager::Instance().RemoveObserver(*this);
-		OBSERVER_REMOVE_SELF;
+	IObserver::~IObserver() {
+		viper::EventManager::Instance().RemoveObserver(*this);
 	}
 }

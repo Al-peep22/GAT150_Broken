@@ -25,23 +25,23 @@ namespace viper{
 			else {iter++;}
 		}
 
-		//check for collisions
-		for (auto& actorA : actors) {
-			for (auto& actorB : actors) {
+		////check for collisions
+		//for (auto& actorA : actors) {
+		//	for (auto& actorB : actors) {
 
-				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
-				
-				auto colliderA = actorA->GetComponent<ColliderComponent>();
-				auto colliderB = actorB->GetComponent<ColliderComponent>();
-				
-				if (!colliderA || !colliderB) continue; // Skip if no collider
+		//		if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
+		//		
+		//		auto colliderA = actorA->GetComponent<ColliderComponent>();
+		//		auto colliderB = actorB->GetComponent<ColliderComponent>();
+		//		
+		//		if (!colliderA || !colliderB) continue; // Skip if no collider
 
-				if (colliderA->CheckCollision(*colliderB)) {
-					actorA->OnCollision(actorB.get());
-					actorB->OnCollision(actorA.get());
-				}
-			}
-		}
+		//		if (colliderA->CheckCollision(*colliderB)) {
+		//			actorA->OnCollision(actorB.get());
+		//			actorB->OnCollision(actorA.get());
+		//		}
+		//	}
+		//}
 	}
 
 	void Scene::Read(const json::value_t& value)

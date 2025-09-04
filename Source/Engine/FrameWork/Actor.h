@@ -35,7 +35,9 @@ namespace viper {
 
 		Actor(const Actor& other);
 
-		CLASS_PROTOTYPE(Actor);
+		virtual std::unique_ptr<Object> Clone() const {
+			return std::make_unique<Actor>(*this);
+		};
 
 		void Read(const json::value_t& value) override;
 		

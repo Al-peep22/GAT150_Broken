@@ -23,15 +23,16 @@ namespace viper {
 			auto spriteRenderer = owner->GetComponent<SpriteRenderer>();
 			if (spriteRenderer) { size = spriteRenderer->texture->GetSize(); }
 		}
-		physicsBody = std::make_unique<PhysicsBody>(owner->transform,size,scale,bodyDef,GetEngine().GetPhysics());
+		size *= scale;
+
+		physicsBody = std::make_unique<PhysicsBody>(owner->transform,size,bodyDef,GetEngine().GetPhysics());
 	}
 
 	void RigidBody::Update(float dt)
 	{
 		owner->transform.position = physicsBody->GetPosition();
 		owner->transform.rotation = math::radToDeg(physicsBody->GetAngle());
-		//owner->transform.position += velocity * dt;
-		//velocity *= (1.0f / (1.0f + damping * dt)); // (< 1) = slow down
+		velocity = physicsBody->GetVelocity();
 	}
 
 	void RigidBody::Draw(Renderer& renderer)

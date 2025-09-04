@@ -110,7 +110,9 @@ int main(int argc, char* argv[]) {
 		// CLEAR RENDERER        
         vec3 color{0,0,0};
         GetEngine().GetRenderer().SetColor(color.x, color.y, color.z);
-        GetEngine().GetRenderer().Clear();        
+        GetEngine().GetRenderer().Clear();
+
+
 
         //// PLAY SOUND
         /*

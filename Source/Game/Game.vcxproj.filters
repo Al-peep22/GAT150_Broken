@@ -20,6 +20,9 @@
     <Filter Include="Source\Game\Platformer\Tilemaps">
       <UniqueIdentifier>{2c694913-1456-4d74-8439-634ebeec4fbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Platformer\Animations">
+      <UniqueIdentifier>{62b94110-a545-4427-bb9b-1e8f18be8219}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -52,6 +55,12 @@
     <ClCompile Include="Platformer\EnemyController.cpp">
       <Filter>Source\Game\Platformer</Filter>
     </ClCompile>
+    <ClCompile Include="Platormer\Pickup.cpp">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer\FlyingEnemyController.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Player.h">
@@ -81,6 +90,12 @@
     <ClInclude Include="Platformer\EnemyController.h">
       <Filter>Source\Game\Platformer</Filter>
     </ClInclude>
+    <ClInclude Include="Platformer\Pickup.h">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer\FlyingEnemyController.h">
+      <Filter>Source\Game\Platformer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Build\Assets\Meshes\enemy.txt">
@@ -99,6 +114,9 @@
     </None>
     <None Include="..\..\Build\Assets\Platformer\Scenes\level.json">
       <Filter>Source\Game\Platformer\Tilemaps</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Platformer\Animations\bat_idle.json">
+      <Filter>Source\Game\Platformer\Animations</Filter>
     </None>
   </ItemGroup>
 </Project>

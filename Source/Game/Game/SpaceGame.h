@@ -4,6 +4,7 @@
 #include "Renderer/Text.h"
 #include "Renderer/Renderer.h"
 #include "Event/Observer.h"
+#include "Event/Event.h"
 
 class SpaceGame : public viper::Game, public viper::IObserver {
 public:

@@ -32,7 +32,7 @@ namespace viper {
 						JSON_READ(propertyValue, name);
 
 						// check if property name is TextureName
-						if (equalsIqnoreCase(name, "TextureName")) {
+						if (equalsIgnoreCase(name, "TextureName")) {
 							// read texture name value (texture name)
 							std::string value;
 							JSON_READ(propertyValue, value);
@@ -41,6 +41,9 @@ namespace viper {
 							if (!layer.texture) {
 								Logger::Warning("Could not read tilemap layer texture: {}", value);
 							}
+						}
+						else if (equalsIgnoreCase(name, "Collision")) {
+							JSON_READ_NAME(propertyValue, "value", layer.hasCollision);
 						}
 					}
 				}
@@ -57,7 +60,7 @@ namespace viper {
 
 		// calculate tiles per row from texture size
 		vec2 textureSize = layer.texture->GetSize();
-		int tilesPerRow = (int)(textureSize.x / layer.width);
+		int tilesPerRow = (int)(textureSize.x / tilewidth);
 
 		int column = (tileId - 1) % tilesPerRow; // Tiled uses 1-based indexing
 		int row = (tileId - 1) / tilesPerRow;
@@ -71,8 +74,8 @@ namespace viper {
 	}
 
 	vec2 Tilemap::GetPosition(const Layer& layer, int tileIndex) {
-		float tileX = tileIndex % layer.width;
-		float tileY = tileIndex / layer.width;
+		float tileX = float(tileIndex % layer.width);
+		float tileY = float(tileIndex / layer.width);
 		return vec2{ tileX * tilewidth, tileY * tileheight };
 	}
 }

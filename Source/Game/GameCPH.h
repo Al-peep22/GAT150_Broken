@@ -4,10 +4,11 @@
 
 // components
 #include "Components/SpriteRenderer.h"
+#include "Components/Animator.h"
 #include "Components/MeshRenderer.h"
 #include "Components/RigidBody.h"
 #include "Components/RendererComponent.h"
-#include "TilemapRenderer.h"
+#include "Components/TilemapRenderer.h"
 
 
 // audio
@@ -25,3 +26,4 @@
 #include "Renderer/Texture.h"
 #include "Renderer/Text.h"
 #include "Renderer/Tilemap.h"
+#include "Renderer/TextureAnimation.h"

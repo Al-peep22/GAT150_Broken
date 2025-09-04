@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <iostream>
+#include "Math/Rect.h"
 
 namespace viper {
 	class Renderer {
@@ -26,9 +27,9 @@ namespace viper {
 
 		friend class Texture;
 		void DrawTexture(Texture& texture, float x, float y);
-		void DrawTexture(Texture& texture, float x, float y,float scale,float angle);
+		void DrawTexture(Texture& texture, float x, float y,float scale,float angle, bool flipH = false);
 
-		void DrawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
+		void DrawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1, bool flipH = false);
 
 	private:
 		friend class Text;

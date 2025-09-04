@@ -1,6 +1,7 @@
 #include "FrameWork/Component.h"
 #include "Physics/Collidable.h"
 #include "Event/Observer.h"
+#include "Event/Event.h"
 
 class Enemy : public viper::Component, public viper::ICollidable, public viper::IObserver {
 public:

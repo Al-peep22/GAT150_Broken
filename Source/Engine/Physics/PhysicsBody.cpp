@@ -69,4 +69,7 @@ namespace viper {
 	{
 		b2Body_SetLinearVelocity(bodyId, to_b2(Physics::PixelToWorld(velocity)));
 	}
+	vec2 PhysicsBody::GetVelocity() {
+		return Physics::WorldToPixels(to_vec2(b2Body_GetLinearVelocity(bodyId)));
+	}
 }

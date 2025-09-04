@@ -6,9 +6,13 @@ namespace viper{
 	class SpriteRenderer : public RendererComponent {
 	public:
 		std::string textureName;
+		rect textureRect;
 		res_t<Texture> texture;
+		bool flipH{ false };
 	public:
-		CLASS_PROTOTYPE(SpriteRenderer);
+		virtual std::unique_ptr<Object> Clone() const {
+			return std::make_unique<SpriteRenderer>(*this);
+		};
 
 		void Start() override;
 		void Update(float dt) override;

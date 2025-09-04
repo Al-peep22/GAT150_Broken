@@ -15,6 +15,7 @@
 #include <Components/RigidBody.h>
 #include <Components/CircleCollider2D.h>
 #include "FrameWork/Actor.h"
+#include "Event/Event.h"
 
 #include "Core/Factory.h"
 #include "Event/EventManager.h"

@@ -23,6 +23,7 @@ namespace viper {
 
 		viper::PhysicsBody::PhysicsBodyDef bodyDef;
 		bodyDef.isDynamic = false;
+		bodyDef.actor = owner;
 
 		// iterate through layers
 		for (auto layer : tilemap->GetLayers()) {

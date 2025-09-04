@@ -129,7 +129,13 @@
       <Filter>Source\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Components\TilemapRenderer.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\TextureAnimation.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Animator.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,9 +253,6 @@
     <ClInclude Include="Components\AudioSource.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Factory.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Serializable.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
@@ -279,6 +282,15 @@
     </ClInclude>
     <ClInclude Include="Components\TilemapRenderer.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\TextureAnimation.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Animator.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Factory.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

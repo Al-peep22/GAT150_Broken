@@ -2,7 +2,7 @@
 #include <string>
 #include "Core/Serializable.h"
 
-#define CLASS_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone() { return std::make_unique<classname>(*this); }
+#define CLASS_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone() const { return std::make_unique<classname>(*this); }
 
 namespace viper {
 	class Object : ISerializable{

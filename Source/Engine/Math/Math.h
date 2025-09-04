@@ -67,5 +67,7 @@ namespace viper {
 
 		using std::atan2;
 		using std::atan2f;
+		using std::abs;
+		using std::fabs;
 	}
 }

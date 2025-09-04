@@ -22,12 +22,46 @@
                 {
                     "type": "RigidBody",
                     "gravity": 0,
-                    "angularDamping":  2.0
+                    "angularDamping": 2.0
                 },
                 {
                     "type": "CircleCollider2D",
                     "radius": 60
                 }
+            ]
+        },
+        {
+            "name": "bat",
+            "tag": "enemy",
+            "transform": {
+                "position": [
+                    740,
+                    500
+                ],
+                "rotation": 0,
+                "scale": 3
+            },
+            "components": [
+                {
+                    "type": "SpriteRenderer"
+                },
+                {
+                    "type": "Animator",
+                    "animations": [
+                        {
+                            "name": "idle",
+                            "texture_animation": "animations/player_idle.json"
+                        },
+                        {
+                            "name": "walk",
+                            "texture_animation": "animations/player_walk.json"
+                        },
+                        {
+                            "name": "attack",
+                            "texture_animation": "animations/player_attack.json"
+                        }
+                    ]
+                } 
             ]
         },
         {
@@ -69,7 +103,7 @@
                 {
                     "type": "RigidBody",
                     "gravity": 0,
-                    "isSensor":  true
+                    "isSensor": true
                 },
                 {
                     "type": "CircleCollider2D",

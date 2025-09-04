@@ -32,6 +32,11 @@
             "opacity": 1,
             "properties": [
                 {
+                    "name": "Collision",
+                    "type": "bool",
+                    "value": true
+                },
+                {
                     "name": "TextureName",
                     "type": "string",
                     "value": "Textures\\tilemap.png"
